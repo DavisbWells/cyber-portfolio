@@ -20,11 +20,16 @@ const CONFIG = {
   GITHUB_TOKEN: '',
 
   // ── Personal Info ──────────────────────────────────────────────────────────
-  FULL_NAME: 'Your Name',
+  FULL_NAME: 'Davis Wells',
   TITLE: 'Cybersecurity Student & Aspiring Security Professional',
-  EMAIL: 'your.email@example.com',
-  LINKEDIN_URL: 'https://www.linkedin.com/in/yourprofile',
-  GITHUB_PROFILE_URL: 'https://github.com/yourusername',
+  EMAIL: 'davisbwells06@gmail.com',
+  LINKEDIN_URL: 'https://www.linkedin.com/in/davis-wells-3955923a2',
+  GITHUB_PROFILE_URL: 'https://github.com/DavisbWells',
+
+  // ── Supabase ──────────────────────────────────────────────────
+  // Get these from supabase.com → your project → Settings → API
+  SUPABASE_URL: '',
+  SUPABASE_ANON_KEY: '',
 
   // ── Feature Flags ─────────────────────────────────────────────────────────
   // Set to false to disable the live GitHub API call and use fallback data
