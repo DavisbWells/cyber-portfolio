@@ -11,7 +11,7 @@
 const CONFIG = {
   // ── GitHub Integration ─────────────────────────────────────────────────────
   // Your GitHub username (public — safe to store here)
-  GITHUB_USERNAME: 'yourusername',
+  GITHUB_USERNAME: 'DavisbWells',
 
   // Personal Access Token — grants higher API rate limits (5000 req/hr vs 60)
   // Create at: https://github.com/settings/tokens → "Fine-grained tokens"
