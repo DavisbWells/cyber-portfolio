@@ -28,8 +28,8 @@ const CONFIG = {
 
   // ── Supabase ──────────────────────────────────────────────────
   // Get these from supabase.com → your project → Settings → API
-  SUPABASE_URL: '',
-  SUPABASE_ANON_KEY: '',
+  SUPABASE_URL: 'https://lktbauxuzveflfwpzwwt.supabase.co',
+  SUPABASE_ANON_KEY: 'sb_publishable_rLP1N7r78ZKzmZxO55pQCA_JnDrcQIB',
 
   // ── Feature Flags ─────────────────────────────────────────────────────────
   // Set to false to disable the live GitHub API call and use fallback data
