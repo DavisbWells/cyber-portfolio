@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Simulated SOC security dashboard — training and portfolio showcase. All data is client-side generated. No real threat data.">
+  <title>SOC Dashboard [SIMULATED] — Cyber Ops Portfolio</title>
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+</head>
+<body data-page="dashboard">
+
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <span class="bracket">[</span>Cyber Ops<span class="bracket">]</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+        <li><a href="labs.html">Labs</a></li>
+        <li><a href="homelab.html">Homelab</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="dashboard.html" class="active">Dashboard</a></li>
+      </ul>
+      <div class="nav-status" aria-label="System status: operational">
+        <span class="status-dot" aria-hidden="true"></span>
+        Systems Operational
+      </div>
+      <button class="nav-hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <nav id="mobile-nav" class="nav-mobile" aria-label="Mobile navigation">
+    <a href="../index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="certifications.html">Certifications</a>
+    <a href="labs.html">Labs</a>
+    <a href="homelab.html">Homelab</a>
+    <a href="resume.html">Resume</a>
+    <a href="dashboard.html">Dashboard</a>
+  </nav>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>SOC Dashboard</h1>
+        <div class="page-cmd">./start_dashboard.sh --mode=training --env=simulation</div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:var(--sp-6);">
+      <div class="container">
+
+        <!-- IMPORTANT: Simulation disclaimer — clearly labeled -->
+        <div class="alert alert-sim" style="margin-bottom:var(--sp-8);">
+          <span style="font-size:1.25rem;" aria-hidden="true">&#9888;</span>
+          <div>
+            <strong>SIMULATION / TRAINING ENVIRONMENT</strong> —
+            All data displayed on this dashboard is randomly generated client-side in JavaScript.
+            There are no real threats, no network connections, and no actual security telemetry.
+            This page exists as a concept showcase demonstrating SOC dashboard design
+            and is part of a cybersecurity student portfolio.
+          </div>
+        </div>
+
+        <!-- Session header with live uptime -->
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--sp-6); flex-wrap:wrap; gap:var(--sp-4);">
+          <div>
+            <h2 style="font-size:1.2rem; margin-bottom:4px;">Security Operations Center</h2>
+            <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted);">
+              Analyst: trainee@cyberops.local &bull; Session uptime:
+              <span id="uptime-clock" style="color:var(--green);">00:00:00</span>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:var(--sp-3); flex-wrap:wrap;">
+            <div style="display:flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:0.72rem; color:var(--red);">
+              <span class="live-dot" aria-hidden="true"></span>
+              SIMULATED LIVE
+            </div>
+            <span class="badge badge-planned">Training Mode</span>
+          </div>
+        </div>
+
+        <!-- ── Metric Cards ──────────────────────────────────── -->
+        <div class="dashboard-grid">
+
+          <div class="dash-card">
+            <div class="dash-card-label">Threats Blocked (Session)</div>
+            <div class="dash-card-value" id="metric-blocked">—</div>
+            <div class="dash-card-sub">Firewall drops + IDS blocks</div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-card-label">Events Analyzed</div>
+            <div class="dash-card-value" id="metric-events">—</div>
+            <div class="dash-card-sub">Log entries processed</div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-card-label">Alerts Reviewed</div>
+            <div class="dash-card-value" id="metric-alerts">—</div>
+            <div class="dash-card-sub">Analyst-reviewed this session</div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-card-label">System Uptime</div>
+            <div class="dash-card-value" id="metric-uptime">—</div>
+            <div class="dash-card-sub">Infrastructure availability</div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-card-label">High Severity Alerts</div>
+            <div class="dash-card-value" style="color:var(--red);">3</div>
+            <div class="dash-card-sub">Require immediate review</div>
+          </div>
+
+          <div class="dash-card">
+            <div class="dash-card-label">Active Monitoring</div>
+            <div class="dash-card-value" style="color:var(--blue);">12</div>
+            <div class="dash-card-sub">Endpoints reporting</div>
+          </div>
+
+        </div>
+
+        <!-- ── World Map Placeholder ─────────────────────────── -->
+        <div class="card" style="margin-bottom:var(--sp-6); padding:var(--sp-5);">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--sp-4);">
+            <h3 style="font-size:1rem; font-family:var(--font-mono);">Global Threat Indicators [SIMULATED]</h3>
+            <span class="badge badge-planned">Map placeholder</span>
+          </div>
+          <div style="background:#0d1117; border:1px solid #30363d; border-radius:var(--radius); padding:var(--sp-8); text-align:center; min-height:140px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:var(--sp-3);">
+            <div style="font-size:2rem;" aria-hidden="true">&#127758;</div>
+            <div style="font-family:var(--font-mono); font-size:0.8rem; color:var(--text-muted);">
+              World map with geo-IP indicators would render here<br>
+              <span style="color:var(--text-dim); font-size:0.72rem;">(Placeholder — integrate D3.js + TopoJSON for production)</span>
+            </div>
+            <!-- Simulated indicator dots -->
+            <div style="display:flex; gap:1.5rem; margin-top:var(--sp-2);">
+              <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--red);">&#128308; High risk origin: CN</span>
+              <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--orange);">&#128992; Medium: RU, TOR exit</span>
+              <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--yellow);">&#128993; Low: DE, NL, US</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Threat Feed + Log Viewer ──────────────────────── -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-5); margin-bottom:var(--sp-6);">
+
+          <!-- Live threat feed -->
+          <div class="threat-feed" aria-label="Simulated threat feed" aria-live="polite" aria-atomic="false">
+            <div class="threat-feed-header">
+              <span class="threat-feed-title">&#9888; Threat Feed — Simulated</span>
+              <div class="threat-feed-live">
+                <span class="live-dot" aria-hidden="true"></span>
+                LIVE SIM
+              </div>
+            </div>
+            <div class="threat-feed-body">
+              <!-- Entries injected by dashboard.js ThreatFeed.init() -->
+            </div>
+          </div>
+
+          <!-- Log viewer -->
+          <div class="log-viewer" aria-label="Simulated log stream">
+            <div class="log-header">
+              <span class="live-dot" aria-hidden="true"></span>
+              <span class="log-header-title">Syslog Stream — Simulated</span>
+            </div>
+            <div class="log-body">
+              <!-- Entries injected by dashboard.js LogViewer.init() -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── Alert Queue ───────────────────────────────────── -->
+        <div class="card" style="margin-bottom:var(--sp-6);">
+          <h3 style="font-size:1rem; font-family:var(--font-mono); margin-bottom:var(--sp-5);">&#128680; Alert Queue [SIMULATED]</h3>
+          <div style="display:flex; flex-direction:column; gap:var(--sp-3);">
+
+            <div style="display:flex; align-items:center; gap:var(--sp-3); padding:var(--sp-3) var(--sp-4); background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.2); border-radius:var(--radius); border-left:3px solid var(--red);">
+              <span class="badge badge-expert">HIGH</span>
+              <div style="flex:1;">
+                <div style="font-size:0.875rem; font-weight:600;">Possible C2 Beaconing — 10.0.20.11</div>
+                <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted);">Outbound TCP/4444 at regular 60s intervals → 185.220.101.34</div>
+              </div>
+              <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted);">02:11:43</span>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:var(--sp-3); padding:var(--sp-3) var(--sp-4); background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.2); border-radius:var(--radius); border-left:3px solid var(--red);">
+              <span class="badge badge-expert">HIGH</span>
+              <div style="flex:1;">
+                <div style="font-size:0.875rem; font-weight:600;">SSH Brute Force — 185.220.101.34</div>
+                <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted);">47 failed auth attempts in 90s against root account</div>
+              </div>
+              <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted);">02:09:12</span>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:var(--sp-3); padding:var(--sp-3) var(--sp-4); background:rgba(249,115,22,0.06); border:1px solid rgba(249,115,22,0.2); border-radius:var(--radius); border-left:3px solid var(--orange);">
+              <span class="badge badge-advanced">MED</span>
+              <div style="flex:1;">
+                <div style="font-size:0.875rem; font-weight:600;">SQL Injection Attempt — /api/login</div>
+                <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted);">WAF blocked payload: ' OR 1=1-- from 203.0.113.195</div>
+              </div>
+              <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted);">02:05:57</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Bottom disclaimer -->
+        <div class="alert alert-sim">
+          <span aria-hidden="true">&#128161;</span>
+          <div>
+            <strong>Portfolio note:</strong> This dashboard demonstrates SOC workflow understanding,
+            alert triage concepts, and log analysis skills. In a real environment, this interface
+            would connect to a SIEM (Splunk, Elastic SIEM) via authenticated API calls over TLS.
+            Building this simulation was itself a learning exercise in dashboard UX, real-time DOM
+            updates, and security telemetry data structures.
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-logo"><span class="accent">[</span>Cyber Ops<span class="accent">]</span></div>
+      <ul class="footer-links" role="list">
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+        <li><a href="labs.html">Labs</a></li>
+        <li><a href="resume.html">Resume</a></li>
+      </ul>
+      <div class="footer-copy">Built with vanilla HTML, CSS &amp; JS &bull; Deployed on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <script src="../config.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
+
+  <style>
+    /* Dashboard two-column responsive */
+    @media (max-width: 768px) {
+      .threat-feed, .log-viewer {
+        grid-column: 1 / -1;
+      }
+      /* Override the inline 2-col grid */
+      section .container > [style*="grid-template-columns:1fr 1fr"] {
+        display: block !important;
+      }
+      section .container > [style*="grid-template-columns:1fr 1fr"] > * {
+        margin-bottom: 1.25rem;
+      }
+    }
+  </style>
+
+</body>
+</html>

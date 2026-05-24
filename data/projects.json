@@ -1,0 +1,56 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Network Packet Analyzer",
+      "description": "Python-based packet capture and analysis tool built with Scapy. Captures live network traffic, parses protocol headers, identifies suspicious patterns (port scans, ARP spoofing, unusual payloads), and generates structured JSON/HTML reports. Designed for homelab use on a dedicated monitoring VM.",
+      "category": "Security Tools",
+      "tech": ["Python", "Scapy", "Wireshark", "Linux", "JSON"],
+      "difficulty": "Intermediate",
+      "github": "https://github.com/yourusername/packet-analyzer",
+      "demo": null,
+      "status": "Complete",
+      "date": "2026-03",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "title": "OSINT Reconnaissance Framework",
+      "description": "Modular Python toolkit for passive reconnaissance. Aggregates WHOIS records, DNS enumeration, certificate transparency log entries, and Shodan data into a structured threat profile. Designed for authorized penetration testing engagements.",
+      "category": "Security Tools",
+      "tech": ["Python", "Shodan API", "OSINT", "DNS", "Requests"],
+      "difficulty": "Intermediate",
+      "github": "https://github.com/yourusername/osint-recon",
+      "demo": null,
+      "status": "In Progress",
+      "date": "2026-04",
+      "featured": true
+    },
+    {
+      "id": 3,
+      "title": "Log Analysis Automation",
+      "description": "Bash and Python scripts for automated parsing of syslog, auth.log, and Windows Event Log exports. Detects brute-force attempts, privilege escalation events, and lateral movement indicators using pattern matching and statistical analysis.",
+      "category": "Scripting",
+      "tech": ["Python", "Bash", "Regex", "SIEM Concepts", "CSV"],
+      "difficulty": "Beginner",
+      "github": "https://github.com/yourusername/log-analyzer",
+      "demo": null,
+      "status": "Complete",
+      "date": "2026-02",
+      "featured": false
+    },
+    {
+      "id": 4,
+      "title": "Security Awareness Training Page",
+      "description": "Simulated phishing landing page built for internal security awareness training. Demonstrates common social engineering techniques in a controlled environment and educates users on identifying malicious pages. Includes a logging component for the security team.",
+      "category": "Web",
+      "tech": ["HTML", "CSS", "JavaScript", "PHP"],
+      "difficulty": "Beginner",
+      "github": "https://github.com/yourusername/sec-awareness",
+      "demo": null,
+      "status": "Complete",
+      "date": "2026-01",
+      "featured": false
+    }
+  ]
+}

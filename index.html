@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cybersecurity student portfolio — projects, certifications, labs, and homelab documentation. Pursuing Network+ and Security+ while targeting government contracting roles.">
+  <meta name="robots" content="index, follow">
+  <title>Cyber Ops — Security Portfolio</title>
+
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; frame-ancestors 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#0a0e17">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cyber Ops — Security Portfolio">
+  <meta property="og:description" content="Cybersecurity student portfolio: projects, labs, and certifications.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts
+       Note: Google Fonts CDN doesn't support SRI because the response varies by
+       browser User-Agent for optimal font formats. Self-hosting is recommended
+       for full SRI compliance. See README.md for self-hosting instructions. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body data-page="home">
+
+  <!-- ── Navigation ──────────────────────────────────────────── -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Home">
+        <span class="bracket">[</span>Cyber Ops<span class="bracket">]</span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="sections/projects.html">Projects</a></li>
+        <li><a href="sections/certifications.html">Certifications</a></li>
+        <li><a href="sections/labs.html">Labs</a></li>
+        <li><a href="sections/homelab.html">Homelab</a></li>
+        <li><a href="sections/resume.html">Resume</a></li>
+        <li><a href="sections/dashboard.html">Dashboard</a></li>
+      </ul>
+
+      <div class="nav-status" aria-label="System status: operational">
+        <span class="status-dot" aria-hidden="true"></span>
+        Systems Operational
+      </div>
+
+      <!-- Hamburger for mobile -->
+      <button class="nav-hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <nav id="mobile-nav" class="nav-mobile" aria-label="Mobile navigation">
+    <a href="index.html">Home</a>
+    <a href="sections/projects.html">Projects</a>
+    <a href="sections/certifications.html">Certifications</a>
+    <a href="sections/labs.html">Labs</a>
+    <a href="sections/homelab.html">Homelab</a>
+    <a href="sections/resume.html">Resume</a>
+    <a href="sections/dashboard.html">Dashboard</a>
+  </nav>
+
+  <main>
+    <!-- ── Hero ──────────────────────────────────────────────── -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-grid">
+
+        <!-- Left: Text content -->
+        <div class="hero-text">
+          <div class="hero-eyebrow" aria-label="Status: actively learning">
+            Actively Learning & Building
+          </div>
+
+          <h1 class="hero-title" id="hero-heading">
+            Cybersecurity Student &amp;<br>
+            <span class="accent">Aspiring Security Professional</span>
+          </h1>
+
+          <p class="hero-sub">
+            Pursuing CompTIA Network+ and Security+ while building hands-on
+            experience through labs, homelab experiments, and security tooling.
+            Targeting government contracting and federal cybersecurity roles.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="sections/projects.html" class="btn btn-primary">
+              View My Projects
+            </a>
+            <a href="sections/resume.html" class="btn btn-secondary">
+              Download Resume
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Terminal animation -->
+        <div class="hero-terminal" aria-hidden="true">
+          <div class="terminal" role="presentation">
+            <div class="terminal-bar">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot yellow"></span>
+              <span class="terminal-dot green"></span>
+              <span class="terminal-title">cyberops — bash</span>
+            </div>
+            <div class="terminal-body" aria-live="off">
+              <!-- Populated by TerminalAnimator in main.js -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Stats Bar ──────────────────────────────────────────── -->
+    <section class="stats-bar" aria-label="Portfolio statistics">
+      <div class="stats-grid">
+
+        <div class="stat-card reveal">
+          <span class="stat-icon" aria-hidden="true">&#127941;</span>
+          <div class="stat-number" id="stat-certs">—</div>
+          <div class="stat-label">Certifications Earned</div>
+        </div>
+
+        <div class="stat-card reveal reveal-delay-2">
+          <span class="stat-icon" aria-hidden="true">&#128300;</span>
+          <div class="stat-number" id="stat-labs">—</div>
+          <div class="stat-label">Labs Completed</div>
+        </div>
+
+        <div class="stat-card reveal reveal-delay-3">
+          <span class="stat-icon" aria-hidden="true">&#128295;</span>
+          <div class="stat-number" id="stat-projects">—</div>
+          <div class="stat-label">Projects Built</div>
+        </div>
+
+        <div class="stat-card reveal reveal-delay-4">
+          <span class="stat-icon" aria-hidden="true">&#128293;</span>
+          <div class="stat-number" id="stat-streak">—</div>
+          <div class="stat-label">Day Study Streak</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── GitHub Repos Widget ───────────────────────────────── -->
+    <section class="github-section section" aria-labelledby="github-heading">
+      <div class="container">
+        <div class="github-header">
+          <div>
+            <h2 id="github-heading">Recent Repositories</h2>
+            <p style="margin:0; color: var(--text-muted); font-size: 0.9rem;">
+              Live data from GitHub API
+            </p>
+          </div>
+          <a href="#" class="btn btn-ghost github-view-all" target="_blank" rel="noopener noreferrer">
+            View All on GitHub &#8599;
+          </a>
+        </div>
+
+        <!-- Repo cards injected by github.js -->
+        <div class="repos-grid" aria-label="GitHub repositories">
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Quick Links / About Strip ─────────────────────────── -->
+    <section class="section" aria-label="Quick navigation" style="padding-top:0">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>What I'm Working On</h2>
+          <p>A living portfolio that grows with every lab, cert, and project.</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:1.25rem;">
+
+          <a href="sections/certifications.html" class="card reveal reveal-delay-1" style="text-decoration:none; display:flex; flex-direction:column; gap:0.75rem;">
+            <span style="font-size:2rem" aria-hidden="true">&#127941;</span>
+            <h3 style="font-size:1.1rem">Certifications</h3>
+            <p style="font-size:0.85rem; margin:0">Network+ in progress · Security+ planned · Tracking every step</p>
+          </a>
+
+          <a href="sections/labs.html" class="card reveal reveal-delay-2" style="text-decoration:none; display:flex; flex-direction:column; gap:0.75rem;">
+            <span style="font-size:2rem" aria-hidden="true">&#128300;</span>
+            <h3 style="font-size:1.1rem">Lab Writeups</h3>
+            <p style="font-size:0.85rem; margin:0">TryHackMe, Hack The Box — documented with notes and takeaways</p>
+          </a>
+
+          <a href="sections/homelab.html" class="card reveal reveal-delay-3" style="text-decoration:none; display:flex; flex-direction:column; gap:0.75rem;">
+            <span style="font-size:2rem" aria-hidden="true">&#128421;</span>
+            <h3 style="font-size:1.1rem">Homelab</h3>
+            <p style="font-size:0.85rem; margin:0">Virtualized SOC environment with pfSense, Splunk, and Kali</p>
+          </a>
+
+          <a href="sections/dashboard.html" class="card reveal reveal-delay-4" style="text-decoration:none; display:flex; flex-direction:column; gap:0.75rem;">
+            <span style="font-size:2rem" aria-hidden="true">&#128202;</span>
+            <h3 style="font-size:1.1rem">SOC Dashboard</h3>
+            <p style="font-size:0.85rem; margin:0">Simulated threat feed — a concept showcase, clearly labeled</p>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ────────────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <span class="accent">[</span>Cyber Ops<span class="accent">]</span>
+      </div>
+      <ul class="footer-links" role="list">
+        <li><a href="sections/projects.html">Projects</a></li>
+        <li><a href="sections/certifications.html">Certifications</a></li>
+        <li><a href="sections/labs.html">Labs</a></li>
+        <li><a href="sections/resume.html">Resume</a></li>
+      </ul>
+      <div class="footer-copy">
+        Built with vanilla HTML, CSS &amp; JS &bull; Deployed on GitHub Pages
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts — config.js must load before main.js and github.js -->
+  <script src="config.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/github.js"></script>
+
+</body>
+</html>

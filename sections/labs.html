@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cybersecurity lab writeups — TryHackMe, Hack The Box, and Blue Team Labs. Notes, skills demonstrated, and key takeaways.">
+  <title>Labs &amp; Writeups — Cyber Ops Portfolio</title>
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+</head>
+<body data-page="labs">
+
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <span class="bracket">[</span>Cyber Ops<span class="bracket">]</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+        <li><a href="labs.html" class="active">Labs</a></li>
+        <li><a href="homelab.html">Homelab</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+      <div class="nav-status" aria-label="System status: operational">
+        <span class="status-dot" aria-hidden="true"></span>
+        Systems Operational
+      </div>
+      <button class="nav-hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <nav id="mobile-nav" class="nav-mobile" aria-label="Mobile navigation">
+    <a href="../index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="certifications.html">Certifications</a>
+    <a href="labs.html">Labs</a>
+    <a href="homelab.html">Homelab</a>
+    <a href="resume.html">Resume</a>
+    <a href="dashboard.html">Dashboard</a>
+  </nav>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Labs &amp; Writeups</h1>
+        <div class="page-cmd">grep -r "completed" ~/labs/ | sort -k3 -r</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+
+        <p style="color:var(--text-muted); max-width:640px; margin-bottom:var(--sp-8);">
+          Documented practice sessions from TryHackMe, Hack The Box, and Blue Team Labs Online.
+          Each entry includes the skills practiced and key takeaways — because writing it down
+          is how it sticks.
+        </p>
+
+        <!-- Filter chips -->
+        <div class="filter-bar" id="lab-filters" role="group" aria-label="Filter labs by category">
+          <button class="filter-chip active" data-filter="all">All</button>
+          <button class="filter-chip" data-filter="Forensics">Forensics</button>
+          <button class="filter-chip" data-filter="Network Analysis">Network Analysis</button>
+          <button class="filter-chip" data-filter="OSINT">OSINT</button>
+          <button class="filter-chip" data-filter="Web Exploitation">Web Exploitation</button>
+          <button class="filter-chip" data-filter="CTF">CTF</button>
+        </div>
+
+        <!-- Lab cards injected by main.js (LabCards.load) -->
+        <div id="labs-grid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:1.25rem;" aria-label="Lab writeup cards">
+          <p style="color:var(--text-muted);">Loading labs...</p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-logo"><span class="accent">[</span>Cyber Ops<span class="accent">]</span></div>
+      <ul class="footer-links" role="list">
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+        <li><a href="labs.html">Labs</a></li>
+        <li><a href="resume.html">Resume</a></li>
+      </ul>
+      <div class="footer-copy">Built with vanilla HTML, CSS &amp; JS &bull; Deployed on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <script src="../config.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+</body>
+</html>

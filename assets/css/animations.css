@@ -1,0 +1,158 @@
+/* ============================================================
+   ANIMATIONS.CSS — Keyframes & Motion Utilities
+   All @keyframes, animation utility classes, scroll-reveal,
+   and reduced-motion overrides.
+   ============================================================ */
+
+/* ── Cursor Blink ───────────────────────────────────────────── */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── Status Dot Pulse ───────────────────────────────────────── */
+@keyframes pulse-dot {
+  0%   { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.6); }
+  70%  { box-shadow: 0 0 0 8px rgba(0, 255, 136, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+}
+
+/* ── Mobile Nav Slide Down ──────────────────────────────────── */
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Fade In Up (scroll reveal) ─────────────────────────────── */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Fade In ────────────────────────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Glow Pulse (for highlighted cards) ─────────────────────── */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(0, 255, 136, 0.1); }
+  50%       { box-shadow: 0 0 24px rgba(0, 255, 136, 0.35); }
+}
+
+/* ── Threat feed row appear ─────────────────────────────────── */
+@keyframes fade-in-row {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Scan line (dashboard) ──────────────────────────────────── */
+@keyframes scan-line {
+  0%   { top: 0; opacity: 0.6; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* ── Counter odometer ───────────────────────────────────────── */
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Number tick (used with JS) ─────────────────────────────── */
+@keyframes tick {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+/* ── Scroll Reveal Utility Classes ─────────────────────────── */
+/* Apply .reveal to elements; JS adds .visible when in viewport */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered delays for grid items */
+.reveal-delay-1 { transition-delay: 0.05s; }
+.reveal-delay-2 { transition-delay: 0.10s; }
+.reveal-delay-3 { transition-delay: 0.15s; }
+.reveal-delay-4 { transition-delay: 0.20s; }
+.reveal-delay-5 { transition-delay: 0.25s; }
+.reveal-delay-6 { transition-delay: 0.30s; }
+
+/* ── Loading Skeleton ───────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04) 25%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0.04) 75%
+  );
+  background-size: 400px 100%;
+  animation: shimmer 1.4s ease infinite;
+  border-radius: var(--radius);
+}
+.skeleton-line {
+  height: 14px;
+  margin-bottom: var(--sp-2);
+  border-radius: var(--radius-sm);
+}
+.skeleton-line.w-75 { width: 75%; }
+.skeleton-line.w-50 { width: 50%; }
+.skeleton-line.w-33 { width: 33%; }
+
+/* ── Hero entrance animation ────────────────────────────────── */
+.hero-text > * {
+  animation: fade-in-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+.hero-eyebrow { animation-delay: 0.1s; }
+.hero-title   { animation-delay: 0.2s; }
+.hero-sub     { animation-delay: 0.3s; }
+.hero-ctas    { animation-delay: 0.4s; }
+
+.hero-terminal {
+  animation: fade-in 0.8s ease 0.5s both;
+}
+
+/* ── Glowing border on featured items ──────────────────────── */
+.glow-green { animation: glow-pulse 3s ease-in-out infinite; }
+
+/* ── Dashboard live indicator blink ────────────────────────── */
+@keyframes live-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+.live-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--red);
+  border-radius: 50%;
+  animation: live-blink 1.2s step-end infinite;
+  flex-shrink: 0;
+}
+
+/* ── Reduced motion — respect user preference ───────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

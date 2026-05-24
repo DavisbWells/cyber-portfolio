@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Homelab documentation — virtualized SOC environment with pfSense, Splunk, Kali Linux, and Windows Server for hands-on cybersecurity practice.">
+  <title>Homelab — Cyber Ops Portfolio</title>
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+</head>
+<body data-page="homelab">
+
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <span class="bracket">[</span>Cyber Ops<span class="bracket">]</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+        <li><a href="labs.html">Labs</a></li>
+        <li><a href="homelab.html" class="active">Homelab</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+      <div class="nav-status" aria-label="System status: operational">
+        <span class="status-dot" aria-hidden="true"></span>
+        Systems Operational
+      </div>
+      <button class="nav-hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <nav id="mobile-nav" class="nav-mobile" aria-label="Mobile navigation">
+    <a href="../index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="certifications.html">Certifications</a>
+    <a href="labs.html">Labs</a>
+    <a href="homelab.html">Homelab</a>
+    <a href="resume.html">Resume</a>
+    <a href="dashboard.html">Dashboard</a>
+  </nav>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Homelab Documentation</h1>
+        <div class="page-cmd">cat /etc/network/topology.md</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+
+        <!-- Overview -->
+        <div class="card reveal" style="margin-bottom:var(--sp-8); max-width:900px;">
+          <h2 style="font-size:1.3rem; margin-bottom:var(--sp-4);">Overview</h2>
+          <p style="margin:0;">
+            A virtualized cybersecurity lab running on a dedicated host machine, designed to simulate
+            a small enterprise network. The environment includes isolated network segments, a SIEM for
+            log aggregation, and intentionally vulnerable machines for safe exploitation practice.
+            All attack activity stays within the isolated lab network — no external traffic.
+          </p>
+        </div>
+
+        <!-- Hardware + Tools grid -->
+        <div class="homelab-grid">
+
+          <!-- Hardware -->
+          <div class="reveal">
+            <div class="homelab-section-title">Hardware / Host Specs</div>
+            <div class="hardware-list">
+              <div class="hardware-item">
+                <span class="hardware-icon" aria-hidden="true">&#128421;</span>
+                <div>
+                  <div class="hardware-name">Primary Lab Host</div>
+                  <div class="hardware-spec">Intel Core i7-10700 · 32GB DDR4 · 1TB NVMe</div>
+                </div>
+              </div>
+              <div class="hardware-item">
+                <span class="hardware-icon" aria-hidden="true">&#128246;</span>
+                <div>
+                  <div class="hardware-name">Network Switch</div>
+                  <div class="hardware-spec">TP-Link TL-SG108 8-Port Managed · VLANs configured</div>
+                </div>
+              </div>
+              <div class="hardware-item">
+                <span class="hardware-icon" aria-hidden="true">&#128260;</span>
+                <div>
+                  <div class="hardware-name">Hypervisor</div>
+                  <div class="hardware-spec">VMware Workstation Pro 17 — 6+ concurrent VMs</div>
+                </div>
+              </div>
+              <div class="hardware-item">
+                <span class="hardware-icon" aria-hidden="true">&#128190;</span>
+                <div>
+                  <div class="hardware-name">NAS / Storage</div>
+                  <div class="hardware-spec">Synology DS220+ · Snapshots for VM backups</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Network Topology -->
+          <div class="reveal reveal-delay-2">
+            <div class="homelab-section-title">Network Topology</div>
+            <div class="card" style="background:rgba(0,0,0,0.3); padding:1.25rem;">
+              <pre style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted); line-height:1.8; overflow-x:auto;">
+Internet
+    │
+ [pfSense FW]   192.168.1.1
+    ├── WAN  (DHCP from router)
+    ├── LAN  192.168.1.0/24   ← Management
+    ├── VLAN 10  10.0.10.0/24 ← Attack Network
+    │     ├── Kali Linux      10.0.10.5
+    │     └── ParrotOS        10.0.10.6
+    ├── VLAN 20  10.0.20.0/24 ← Target Network
+    │     ├── Windows Server  10.0.20.10
+    │     ├── Metasploitable  10.0.20.11
+    │     └── DVWA            10.0.20.12
+    └── VLAN 30  10.0.30.0/24 ← SOC / Monitor
+          ├── Splunk SIEM     10.0.30.5
+          └── Security Onion  10.0.30.6
+              </pre>
+            </div>
+          </div>
+
+          <!-- Tools installed -->
+          <div class="reveal reveal-delay-3">
+            <div class="homelab-section-title">Tools Installed</div>
+            <div class="tool-grid">
+              <div class="tool-item">Splunk</div>
+              <div class="tool-item">Security Onion</div>
+              <div class="tool-item">pfSense</div>
+              <div class="tool-item">Kali Linux</div>
+              <div class="tool-item">Nmap</div>
+              <div class="tool-item">Wireshark</div>
+              <div class="tool-item">Metasploit</div>
+              <div class="tool-item">Burp Suite</div>
+              <div class="tool-item">DVWA</div>
+              <div class="tool-item">TheHarvester</div>
+              <div class="tool-item">Maltego</div>
+              <div class="tool-item">Volatility</div>
+              <div class="tool-item">Autopsy</div>
+              <div class="tool-item">GNS3</div>
+              <div class="tool-item">Snort IDS</div>
+              <div class="tool-item">Zeek</div>
+            </div>
+          </div>
+
+          <!-- Purpose / What it's used for -->
+          <div class="reveal reveal-delay-4">
+            <div class="homelab-section-title">Purpose &amp; Use Cases</div>
+            <div style="display:flex; flex-direction:column; gap:var(--sp-3);">
+              <div class="hardware-item">
+                <span class="hardware-icon" aria-hidden="true">&#128270;</span>
+                <div>
+                  <div class="hardware-name">Cert Study Labs</div>
+                  <div class="hardware-spec">Hands-on subnetting, routing, and firewall rule practice for Network+</div>
+                </div>
+              </div>
+              <div class="hardware-item">
+                <span class="hardware-icon" aria-hidden="true">&#128202;</span>
+                <div>
+                  <div class="hardware-name">SIEM Development</div>
+                  <div class="hardware-spec">Ship logs from all VMs to Splunk; build detection rules and dashboards</div>
+                </div>
+              </div>
+              <div class="hardware-item">
+                <span class="hardware-icon" aria-hidden="true">&#128200;</span>
+                <div>
+                  <div class="hardware-name">Malware Analysis (Safe)</div>
+                  <div class="hardware-spec">Isolated network segment for controlled malware behavior observation</div>
+                </div>
+              </div>
+              <div class="hardware-item">
+                <span class="hardware-icon" aria-hidden="true">&#128295;</span>
+                <div>
+                  <div class="hardware-name">Tool Development</div>
+                  <div class="hardware-spec">Test Python scripts and automation tools against real infrastructure</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Current Experiments -->
+        <div style="margin-top:var(--sp-12);">
+          <div class="homelab-section-title reveal">Current Experiments</div>
+          <div class="experiment-list">
+
+            <div class="experiment-item reveal reveal-delay-1">
+              <h4>Splunk SIEM Detection Rules</h4>
+              <p>Writing and tuning SPL (Search Processing Language) queries to detect brute-force attempts,
+              lateral movement via PsExec, and abnormal process creation events across Windows Server hosts.</p>
+            </div>
+
+            <div class="experiment-item reveal reveal-delay-2">
+              <h4>pfSense IDS/IPS Tuning</h4>
+              <p>Configuring Suricata rules on pfSense to detect C2 callback patterns, DNS tunneling,
+              and port scan signatures. Reducing false positives while maintaining high detection fidelity.</p>
+            </div>
+
+            <div class="experiment-item reveal reveal-delay-3">
+              <h4>Active Directory Attack &amp; Defend</h4>
+              <p>Simulating common AD attacks (Pass-the-Hash, Kerberoasting, DCSync) in the target VLAN,
+              then building Splunk queries to detect each technique using Windows Event Log telemetry.</p>
+            </div>
+
+            <div class="experiment-item reveal reveal-delay-4">
+              <h4>Packet Capture Analysis Pipeline</h4>
+              <p>Automating PCAP collection from the network segment, parsing with Python/Scapy,
+              and forwarding IOCs to a local threat intelligence database for correlation.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-logo"><span class="accent">[</span>Cyber Ops<span class="accent">]</span></div>
+      <ul class="footer-links" role="list">
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+        <li><a href="labs.html">Labs</a></li>
+        <li><a href="resume.html">Resume</a></li>
+      </ul>
+      <div class="footer-copy">Built with vanilla HTML, CSS &amp; JS &bull; Deployed on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <script src="../config.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+</body>
+</html>

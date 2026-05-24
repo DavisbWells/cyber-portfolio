@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Security tool projects, scripts, and research built as part of my cybersecurity learning journey.">
+  <title>Projects — Cyber Ops Portfolio</title>
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+</head>
+<body data-page="projects">
+
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <span class="bracket">[</span>Cyber Ops<span class="bracket">]</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+        <li><a href="labs.html">Labs</a></li>
+        <li><a href="homelab.html">Homelab</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+      <div class="nav-status" aria-label="System status: operational">
+        <span class="status-dot" aria-hidden="true"></span>
+        Systems Operational
+      </div>
+      <button class="nav-hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <nav id="mobile-nav" class="nav-mobile" aria-label="Mobile navigation">
+    <a href="../index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="certifications.html">Certifications</a>
+    <a href="labs.html">Labs</a>
+    <a href="homelab.html">Homelab</a>
+    <a href="resume.html">Resume</a>
+    <a href="dashboard.html">Dashboard</a>
+  </nav>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Projects</h1>
+        <div class="page-cmd">ls -la ~/projects/ --sort=date</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p style="color:var(--text-muted); max-width:640px; margin-bottom:var(--sp-8);">
+          Security tools, scripts, and research projects built to develop practical skills.
+          All projects are documented on GitHub with setup instructions and usage examples.
+        </p>
+
+        <!-- Filter chips — JS reads data-filter attr -->
+        <div class="filter-bar" id="project-filters" role="group" aria-label="Filter projects by category">
+          <button class="filter-chip active" data-filter="all">All Projects</button>
+          <button class="filter-chip" data-filter="Security Tools">Security Tools</button>
+          <button class="filter-chip" data-filter="Scripting">Scripting</button>
+          <button class="filter-chip" data-filter="Web">Web</button>
+          <button class="filter-chip" data-filter="Research">Research</button>
+        </div>
+
+        <!-- Project cards injected by main.js (ProjectCards.load) -->
+        <div id="projects-grid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:1.25rem;" aria-label="Project cards">
+          <!-- Populated dynamically from data/projects.json -->
+          <p class="text-muted" style="color:var(--text-muted);">Loading projects...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-logo"><span class="accent">[</span>Cyber Ops<span class="accent">]</span></div>
+      <ul class="footer-links" role="list">
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+        <li><a href="labs.html">Labs</a></li>
+        <li><a href="resume.html">Resume</a></li>
+      </ul>
+      <div class="footer-copy">Built with vanilla HTML, CSS &amp; JS &bull; Deployed on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <script src="../config.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+</body>
+</html>

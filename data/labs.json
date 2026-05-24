@@ -1,0 +1,74 @@
+{
+  "labs": [
+    {
+      "id": 1,
+      "title": "Blue Team Labs: Windows Event Log Analysis",
+      "platform": "TryHackMe",
+      "difficulty": "Easy",
+      "date_completed": "2026-05-10",
+      "skills": ["Log Analysis", "Windows Event Logs", "Threat Detection", "DFIR"],
+      "category": "Forensics",
+      "writeup_url": null,
+      "notes": "Analyzed Windows Security Event Logs to identify simulated lateral movement. Used Event IDs 4624/4625 (logon success/fail), 4648 (explicit creds), and 4688 (process creation) to reconstruct the attacker timeline. Correlated events across multiple hosts to map the full kill chain.",
+      "platform_url": "https://tryhackme.com",
+      "badge_earned": false,
+      "time_spent_mins": 90
+    },
+    {
+      "id": 2,
+      "title": "Nmap Network Scanning Fundamentals",
+      "platform": "TryHackMe",
+      "difficulty": "Easy",
+      "date_completed": "2026-04-22",
+      "skills": ["Network Scanning", "Port Analysis", "Service Enumeration", "Nmap"],
+      "category": "Network Analysis",
+      "writeup_url": null,
+      "notes": "Comprehensive Nmap practice: SYN scan (-sS), UDP scan (-sU), version detection (-sV), OS fingerprinting (-O), and the scripting engine (--script=banner,vuln). Practiced timing templates T1-T5 and XML output for report generation. Key insight: SYN scans leave half-open connections — useful for stealth but detectable by modern IDS.",
+      "platform_url": "https://tryhackme.com",
+      "badge_earned": false,
+      "time_spent_mins": 75
+    },
+    {
+      "id": 3,
+      "title": "OSINT: Trace Labs — Passive Reconnaissance",
+      "platform": "TryHackMe",
+      "difficulty": "Easy",
+      "date_completed": "2026-04-05",
+      "skills": ["OSINT", "Google Dorking", "Social Media Analysis", "TheHarvester", "Shodan"],
+      "category": "OSINT",
+      "writeup_url": null,
+      "notes": "Passive recon using publicly available sources only. Google dorks (site:, filetype:, inurl:), TheHarvester for email/subdomain harvesting, Shodan for exposed services, and certificate transparency logs (crt.sh). Reinforced why documentation of every OSINT step matters for legal defensibility.",
+      "platform_url": "https://tryhackme.com",
+      "badge_earned": false,
+      "time_spent_mins": 60
+    },
+    {
+      "id": 4,
+      "title": "Web Security: Burp Suite Fundamentals",
+      "platform": "TryHackMe",
+      "difficulty": "Medium",
+      "date_completed": "2026-03-15",
+      "skills": ["Web Security", "Burp Suite", "HTTP Interception", "SQL Injection", "XSS", "OWASP"],
+      "category": "Web Exploitation",
+      "writeup_url": null,
+      "notes": "Learned Burp Suite's Proxy, Repeater, Intruder, and Decoder tools. Practiced intercepting and modifying HTTP requests to identify SQL injection (UNION-based) and stored XSS vulnerabilities. Deep understanding of HTTP request/response cycle, cookies, and session management is foundational to all web security work.",
+      "platform_url": "https://tryhackme.com",
+      "badge_earned": false,
+      "time_spent_mins": 120
+    },
+    {
+      "id": 5,
+      "title": "Advent of Cyber 2025 — Days 1–10",
+      "platform": "TryHackMe",
+      "difficulty": "Easy",
+      "date_completed": "2026-01-10",
+      "skills": ["Forensics", "Web Exploitation", "Networking", "OSINT", "Cryptography", "Scripting"],
+      "category": "CTF",
+      "writeup_url": null,
+      "notes": "Annual beginner-friendly CTF event. Covered OPSEC failures, PCAP traffic analysis (C2 beacon identification), log investigation, OSINT, and basic web exploitation. Favorite challenge: PCAP analysis where identifying C2 beacon timing patterns revealed the attacker's automated callback schedule.",
+      "platform_url": "https://tryhackme.com",
+      "badge_earned": false,
+      "time_spent_mins": 300
+    }
+  ]
+}

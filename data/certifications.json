@@ -1,0 +1,64 @@
+{
+  "certifications": [
+    {
+      "id": 1,
+      "name": "Google Cybersecurity Certificate",
+      "code": null,
+      "issuer": "Google / Coursera",
+      "status": "earned",
+      "progress": 100,
+      "date_earned": "2026-01",
+      "date_planned": null,
+      "badge_url": null,
+      "credential_url": "https://coursera.org/verify/your-id",
+      "description": "8-course professional certificate covering foundational security concepts, Linux, Python automation, SIEM tools, IDS/IPS, and incident response frameworks.",
+      "skills": ["Linux CLI", "Python Scripting", "SIEM (Splunk/Chronicle)", "Incident Response", "Vulnerability Assessment", "SQL"],
+      "study_hours": 180
+    },
+    {
+      "id": 2,
+      "name": "CompTIA Network+",
+      "code": "N10-008",
+      "issuer": "CompTIA",
+      "status": "in-progress",
+      "progress": 65,
+      "date_earned": null,
+      "date_planned": "2026-08",
+      "badge_url": null,
+      "credential_url": null,
+      "description": "Validates ability to establish network connectivity, implement network security, and troubleshoot infrastructure. Foundation for all cybersecurity certifications and required for many DoD positions.",
+      "skills": ["TCP/IP", "Subnetting", "Routing & Switching", "VPNs", "Network Troubleshooting", "Cloud Fundamentals"],
+      "study_hours": 80
+    },
+    {
+      "id": 3,
+      "name": "CompTIA Security+",
+      "code": "SY0-701",
+      "issuer": "CompTIA",
+      "status": "planned",
+      "progress": 10,
+      "date_earned": null,
+      "date_planned": "2026-12",
+      "badge_url": null,
+      "credential_url": null,
+      "description": "Industry-standard baseline cybersecurity certification. DoD 8570/8140 compliant — required for many government contractor and federal security roles. Covers threats, cryptography, IAM, and risk management.",
+      "skills": ["Threat Intelligence", "Cryptography", "Identity & Access Management", "Risk Management", "Incident Response", "PKI"],
+      "study_hours": 0
+    },
+    {
+      "id": 4,
+      "name": "Certified Ethical Hacker (CEH)",
+      "code": "CEH v13",
+      "issuer": "EC-Council",
+      "status": "planned",
+      "progress": 0,
+      "date_earned": null,
+      "date_planned": "2027-06",
+      "badge_url": null,
+      "credential_url": null,
+      "description": "Advanced offensive security certification validating penetration testing skills and ethical hacking methodologies. Target credential after achieving Security+.",
+      "skills": ["Penetration Testing", "Vulnerability Exploitation", "Web Application Security", "Network Scanning", "Social Engineering", "Malware Analysis"],
+      "study_hours": 0
+    }
+  ]
+}
