@@ -157,43 +157,7 @@
 
   <script src="../config.js"></script>
   <script src="../assets/js/supabase-client.js"></script>
-  <script>
-    // Redirect to admin if already logged in
-    if (SupabaseClient.isAuthenticated()) {
-      window.location.href = 'admin.html';
-    }
-
-    document.getElementById('login-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const email     = document.getElementById('email').value.trim();
-      const password  = document.getElementById('password').value;
-      const errorEl   = document.getElementById('login-error');
-      const submitBtn = document.getElementById('submit-btn');
-
-      // Basic client-side validation
-      if (!email || !password) {
-        errorEl.textContent = 'Please enter your email and password.';
-        errorEl.classList.add('visible');
-        return;
-      }
-
-      errorEl.classList.remove('visible');
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Signing in...';
-
-      try {
-        await SupabaseClient.signIn(email, password);
-        window.location.href = 'admin.html';
-      } catch (err) {
-        errorEl.textContent = err.message || 'Login failed. Check your credentials.';
-        errorEl.classList.add('visible');
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Sign In';
-        document.getElementById('password').value = '';
-      }
-    });
-  </script>
+  <script src="../assets/js/login.js"></script>
 
 </body>
 </html>
