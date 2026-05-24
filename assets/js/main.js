@@ -188,20 +188,50 @@ class TerminalAnimator {
   }
 }
 
+/* ── DataSource — Supabase-first, JSON fallback ─────────────── */
+
+const DataSource = (() => {
+  const inSections = () => window.location.pathname.includes('/sections/');
+  const base       = () => inSections() ? '../' : './';
+
+  // Returns true when Supabase is configured and available
+  function supabaseReady() {
+    return typeof SupabaseClient !== 'undefined' && SupabaseClient.isConfigured();
+  }
+
+  async function fetchProjects() {
+    if (supabaseReady()) return SupabaseClient.getAll('projects');
+    const res  = await fetch(`${base()}data/projects.json`);
+    const data = await res.json();
+    return data.projects || [];
+  }
+
+  async function fetchLabs() {
+    if (supabaseReady()) return SupabaseClient.getAll('labs');
+    const res  = await fetch(`${base()}data/labs.json`);
+    const data = await res.json();
+    return data.labs || [];
+  }
+
+  async function fetchCertifications() {
+    if (supabaseReady()) return SupabaseClient.getAll('certifications');
+    const res  = await fetch(`${base()}data/certifications.json`);
+    const data = await res.json();
+    return data.certifications || [];
+  }
+
+  return { fetchProjects, fetchLabs, fetchCertifications };
+})();
+
 /* ── Stats Loader ───────────────────────────────────────────── */
 
 const StatsLoader = (() => {
-  // Animate a number from 0 to target
   function animateCount(el, target, duration = 1200) {
-    const start     = performance.now();
-    const startVal  = 0;
-
+    const start = performance.now();
     function step(now) {
-      const elapsed  = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      // Ease-out cubic
+      const progress = Math.min((now - start) / duration, 1);
       const eased    = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.round(startVal + (target - startVal) * eased);
+      el.textContent = Math.round(target * eased);
       if (progress < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
@@ -209,42 +239,25 @@ const StatsLoader = (() => {
 
   async function load() {
     try {
-      // Determine base path — one level up when in sections/
-      const inSections = window.location.pathname.includes('/sections/');
-      const base       = inSections ? '../' : './';
-
-      const [projRes, certRes, labsRes] = await Promise.all([
-        fetch(`${base}data/projects.json`),
-        fetch(`${base}data/certifications.json`),
-        fetch(`${base}data/labs.json`),
+      const [projects, certs, labs] = await Promise.all([
+        DataSource.fetchProjects(),
+        DataSource.fetchCertifications(),
+        DataSource.fetchLabs(),
       ]);
 
-      const [projData, certData, labsData] = await Promise.all([
-        projRes.json(),
-        certRes.json(),
-        labsRes.json(),
-      ]);
-
-      const certsEarned   = certData.certifications.filter(c => c.status === 'earned').length;
-      const labsCompleted = labsData.labs.length;
-      const projectsBuilt = projData.projects.filter(p => p.status === 'Complete').length;
-
-      // Map stat IDs to values
       const stats = {
-        'stat-certs':    certsEarned,
-        'stat-labs':     labsCompleted,
-        'stat-projects': projectsBuilt,
-        'stat-streak':   47, // hardcoded — update manually or via config
+        'stat-certs':    certs.filter(c => c.status === 'earned').length,
+        'stat-labs':     labs.length,
+        'stat-projects': projects.filter(p => p.status === 'Complete').length,
+        'stat-streak':   47,
       };
 
-      // Animate each stat card number
       Object.entries(stats).forEach(([id, value]) => {
         const el = document.getElementById(id);
         if (el) animateCount(el, value);
       });
-
     } catch (err) {
-      console.warn('Stats loader: could not fetch data files.', err);
+      console.warn('StatsLoader:', err);
     }
   }
 
@@ -357,23 +370,22 @@ const ProjectCards = (() => {
     if (!container) return;
 
     try {
-      const inSections = window.location.pathname.includes('/sections/');
-      const base       = inSections ? '../' : './';
-      const res        = await fetch(`${base}data/projects.json`);
-      const data       = await res.json();
-
+      const projects = await DataSource.fetchProjects();
       container.innerHTML = '';
-      data.projects.forEach((p, i) => {
+
+      if (projects.length === 0) {
+        container.innerHTML = '<p style="color:var(--text-muted)">No projects yet — add some via the admin panel.</p>';
+        return;
+      }
+
+      projects.forEach((p, i) => {
         const card = render(p);
         card.classList.add(`reveal-delay-${(i % 6) + 1}`);
         container.appendChild(card);
       });
-
-      // Re-run scroll reveal for new elements
       ScrollReveal.init();
-
     } catch (err) {
-      container.innerHTML = '<p class="text-muted">Projects temporarily unavailable. Check back soon.</p>';
+      container.innerHTML = '<p style="color:var(--text-muted)">Projects temporarily unavailable.</p>';
       console.error('ProjectCards:', err);
     }
   }
@@ -423,22 +435,22 @@ const LabCards = (() => {
     if (!container) return;
 
     try {
-      const inSections = window.location.pathname.includes('/sections/');
-      const base       = inSections ? '../' : './';
-      const res        = await fetch(`${base}data/labs.json`);
-      const data       = await res.json();
-
+      const labs = await DataSource.fetchLabs();
       container.innerHTML = '';
-      data.labs.forEach((lab, i) => {
+
+      if (labs.length === 0) {
+        container.innerHTML = '<p style="color:var(--text-muted)">No lab writeups yet — add some via the admin panel.</p>';
+        return;
+      }
+
+      labs.forEach((lab, i) => {
         const card = render(lab);
         card.classList.add(`reveal-delay-${(i % 6) + 1}`);
         container.appendChild(card);
       });
-
       ScrollReveal.init();
-
     } catch (err) {
-      container.innerHTML = '<p>Labs temporarily unavailable.</p>';
+      container.innerHTML = '<p style="color:var(--text-muted)">Labs temporarily unavailable.</p>';
       console.error('LabCards:', err);
     }
   }
@@ -509,13 +521,15 @@ const CertCards = (() => {
     if (!container) return;
 
     try {
-      const inSections = window.location.pathname.includes('/sections/');
-      const base       = inSections ? '../' : './';
-      const res        = await fetch(`${base}data/certifications.json`);
-      const data       = await res.json();
-
+      const certs = await DataSource.fetchCertifications();
       container.innerHTML = '';
-      data.certifications.forEach((cert, i) => {
+
+      if (certs.length === 0) {
+        container.innerHTML = '<p style="color:var(--text-muted)">No certifications added yet — add some via the admin panel.</p>';
+        return;
+      }
+
+      certs.forEach((cert, i) => {
         const card = render(cert);
         card.classList.add(`reveal-delay-${(i % 4) + 1}`);
         container.appendChild(card);
@@ -523,9 +537,8 @@ const CertCards = (() => {
 
       animateProgressBars();
       ScrollReveal.init();
-
     } catch (err) {
-      container.innerHTML = '<p>Certification data temporarily unavailable.</p>';
+      container.innerHTML = '<p style="color:var(--text-muted)">Certification data temporarily unavailable.</p>';
       console.error('CertCards:', err);
     }
   }
