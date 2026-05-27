@@ -12,10 +12,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Print stylesheet loaded alongside main -->
   <link rel="stylesheet" href="../assets/css/main.css">
   <link rel="stylesheet" href="../assets/css/components.css">
   <link rel="stylesheet" href="../assets/css/animations.css">
+  <link rel="stylesheet" href="../assets/css/resume-editor.css">
 </head>
 <body data-page="resume">
 
@@ -69,223 +69,8 @@
     </section>
 
     <section class="section" style="padding-top:var(--sp-8);">
-      <div class="resume-container">
-
-        <!-- ── Summary ───────────────────────────────────────── -->
-        <div class="resume-section reveal">
-          <div class="resume-section-title">Summary</div>
-          <p style="font-size:0.95rem; line-height:1.75; color:var(--text-secondary);">
-            Cybersecurity student pursuing CompTIA Network+ and Security+ certifications with hands-on
-            experience through a virtualized homelab, TryHackMe/HTB labs, and personal security tool
-            development. Strong foundational knowledge in networking protocols, log analysis, SIEM
-            platforms, and Python scripting. Targeting entry-level SOC analyst and security analyst
-            roles in the government contracting sector, with a long-term goal of working in federal
-            cybersecurity.
-          </p>
-        </div>
-
-        <!-- ── Education ─────────────────────────────────────── -->
-        <div class="resume-section reveal">
-          <div class="resume-section-title">Education</div>
-          <div class="resume-entry">
-            <div class="resume-entry-header">
-              <div>
-                <div class="resume-entry-title">Bachelor of Science — Cybersecurity</div>
-                <div class="resume-entry-org">Your University Name</div>
-              </div>
-              <div class="resume-entry-date">Expected May 2027</div>
-            </div>
-            <ul style="list-style:disc; padding-left:1.25rem; margin-top:0.5rem;">
-              <li style="font-size:0.875rem; color:var(--text-muted); margin-bottom:4px;">Relevant coursework: Network Security, Cryptography, Digital Forensics, Ethical Hacking</li>
-              <li style="font-size:0.875rem; color:var(--text-muted); margin-bottom:4px;">GPA: X.X / 4.0</li>
-              <li style="font-size:0.875rem; color:var(--text-muted);">Member: Cybersecurity Club, Capture the Flag (CTF) Team</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- ── Certifications ────────────────────────────────── -->
-        <div class="resume-section reveal">
-          <div class="resume-section-title">Certifications</div>
-          <div class="resume-entry">
-            <div class="resume-entry-header">
-              <div>
-                <div class="resume-entry-title">Google Cybersecurity Professional Certificate</div>
-                <div class="resume-entry-org">Google / Coursera</div>
-              </div>
-              <div class="resume-entry-date">Jan 2026</div>
-            </div>
-          </div>
-          <div class="resume-entry">
-            <div class="resume-entry-header">
-              <div>
-                <div class="resume-entry-title">CompTIA Network+ (N10-008)</div>
-                <div class="resume-entry-org">CompTIA</div>
-              </div>
-              <div class="resume-entry-date">In Progress — Target Aug 2026</div>
-            </div>
-          </div>
-          <div class="resume-entry">
-            <div class="resume-entry-header">
-              <div>
-                <div class="resume-entry-title">CompTIA Security+ (SY0-701)</div>
-                <div class="resume-entry-org">CompTIA</div>
-              </div>
-              <div class="resume-entry-date">Planned — Dec 2026</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── Technical Skills ──────────────────────────────── -->
-        <div class="resume-section reveal">
-          <div class="resume-section-title">Technical Skills</div>
-          <div class="skills-grid-resume">
-
-            <div class="skill-category">
-              <h3 class="skill-category-title" style="font-family:var(--font-mono); font-size:0.72rem; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); font-weight:600; margin-bottom:.75rem;">Networking</h3>
-              <div class="skill-list">
-                <div class="skill-item">
-                  <div class="skill-meta"><span class="skill-name">TCP/IP &amp; Subnetting</span><span class="skill-level">Strong</span></div>
-                  <div class="progress-track"><div class="progress-fill earned" style="width:0" data-target="82"></div></div>
-                </div>
-                <div class="skill-item">
-                  <div class="skill-meta"><span class="skill-name">Routing &amp; Switching</span><span class="skill-level">Developing</span></div>
-                  <div class="progress-track"><div class="progress-fill in-progress" style="width:0" data-target="60"></div></div>
-                </div>
-                <div class="skill-item">
-                  <div class="skill-meta"><span class="skill-name">Wireshark / PCAP Analysis</span><span class="skill-level">Proficient</span></div>
-                  <div class="progress-track"><div class="progress-fill earned" style="width:0" data-target="75"></div></div>
-                </div>
-                <div class="skill-item">
-                  <div class="skill-meta"><span class="skill-name">pfSense / Firewall Rules</span><span class="skill-level">Developing</span></div>
-                  <div class="progress-track"><div class="progress-fill in-progress" style="width:0" data-target="55"></div></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="skill-category">
-              <h3 class="skill-category-title" style="font-family:var(--font-mono); font-size:0.72rem; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); font-weight:600; margin-bottom:.75rem;">Security Tools</h3>
-              <div class="skill-list">
-                <div class="skill-item">
-                  <div class="skill-meta"><span class="skill-name">Nmap</span><span class="skill-level">Proficient</span></div>
-                  <div class="progress-track"><div class="progress-fill earned" style="width:0" data-target="80"></div></div>
-                </div>
-                <div class="skill-item">
-                  <div class="skill-meta"><span class="skill-name">Splunk SIEM</span><span class="skill-level">Developing</span></div>
-                  <div class="progress-track"><div class="progress-fill in-progress" style="width:0" data-target="60"></div></div>
-                </div>
-                <div class="skill-item">
-                  <div class="skill-meta"><span class="skill-name">Burp Suite</span><span class="skill-level">Familiar</span></div>
-                  <div class="progress-track"><div class="progress-fill in-progress" style="width:0" data-target="45"></div></div>
-                </div>
-                <div class="skill-item">
-                  <div class="skill-meta"><span class="skill-name">Metasploit</span><span class="skill-level">Familiar</span></div>
-                  <div class="progress-track"><div class="progress-fill in-progress" style="width:0" data-target="40"></div></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="skill-category">
-              <h3 class="skill-category-title" style="font-family:var(--font-mono); font-size:0.72rem; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); font-weight:600; margin-bottom:.75rem;">Programming &amp; Scripting</h3>
-              <div class="skill-list">
-                <div class="skill-item">
-                  <div class="skill-meta"><span class="skill-name">Python</span><span class="skill-level">Proficient</span></div>
-                  <div class="progress-track"><div class="progress-fill earned" style="width:0" data-target="75"></div></div>
-                </div>
-                <div class="skill-item">
-                  <div class="skill-meta"><span class="skill-name">Bash / Shell</span><span class="skill-level">Proficient</span></div>
-                  <div class="progress-track"><div class="progress-fill earned" style="width:0" data-target="70"></div></div>
-                </div>
-                <div class="skill-item">
-                  <div class="skill-meta"><span class="skill-name">SQL</span><span class="skill-level">Familiar</span></div>
-                  <div class="progress-track"><div class="progress-fill in-progress" style="width:0" data-target="55"></div></div>
-                </div>
-                <div class="skill-item">
-                  <div class="skill-meta"><span class="skill-name">PowerShell</span><span class="skill-level">Familiar</span></div>
-                  <div class="progress-track"><div class="progress-fill in-progress" style="width:0" data-target="45"></div></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="skill-category">
-              <h3 class="skill-category-title" style="font-family:var(--font-mono); font-size:0.72rem; text-transform:uppercase; letter-spacing:.1em; color:var(--text-muted); font-weight:600; margin-bottom:.75rem;">Operating Systems</h3>
-              <div class="skill-list">
-                <div class="skill-item">
-                  <div class="skill-meta"><span class="skill-name">Linux (Kali, Ubuntu)</span><span class="skill-level">Proficient</span></div>
-                  <div class="progress-track"><div class="progress-fill earned" style="width:0" data-target="78"></div></div>
-                </div>
-                <div class="skill-item">
-                  <div class="skill-meta"><span class="skill-name">Windows / Windows Server</span><span class="skill-level">Proficient</span></div>
-                  <div class="progress-track"><div class="progress-fill earned" style="width:0" data-target="72"></div></div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- ── Experience ────────────────────────────────────── -->
-        <div class="resume-section reveal">
-          <div class="resume-section-title">Experience</div>
-          <div class="resume-entry">
-            <div class="resume-entry-header">
-              <div>
-                <div class="resume-entry-title">IT Help Desk Assistant</div>
-                <div class="resume-entry-org">University IT Department</div>
-              </div>
-              <div class="resume-entry-date">Sep 2025 – Present</div>
-            </div>
-            <ul style="list-style:disc; padding-left:1.25rem; margin-top:0.5rem;">
-              <li style="font-size:0.875rem; color:var(--text-muted); margin-bottom:4px;">Provided Tier 1 technical support for 500+ students and faculty</li>
-              <li style="font-size:0.875rem; color:var(--text-muted); margin-bottom:4px;">Resolved network connectivity, account access, and software issues via ticket system</li>
-              <li style="font-size:0.875rem; color:var(--text-muted);">Assisted with workstation imaging, patch deployment, and endpoint configuration</li>
-            </ul>
-          </div>
-
-          <div class="resume-entry">
-            <div class="resume-entry-header">
-              <div>
-                <div class="resume-entry-title">Freelance Technical Troubleshooting</div>
-                <div class="resume-entry-org">Self-Employed</div>
-              </div>
-              <div class="resume-entry-date">2023 – 2025</div>
-            </div>
-            <ul style="list-style:disc; padding-left:1.25rem; margin-top:0.5rem;">
-              <li style="font-size:0.875rem; color:var(--text-muted); margin-bottom:4px;">Diagnosed and resolved hardware and software issues for small businesses</li>
-              <li style="font-size:0.875rem; color:var(--text-muted);">Configured home network infrastructure including routers, switches, and basic security</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- ── Projects ──────────────────────────────────────── -->
-        <div class="resume-section reveal">
-          <div class="resume-section-title">Notable Projects</div>
-          <div class="resume-entry">
-            <div class="resume-entry-header">
-              <div>
-                <div class="resume-entry-title">Network Packet Analyzer</div>
-                <div class="resume-entry-org" style="font-size:0.8rem; color:var(--text-muted);">Python · Scapy · Wireshark</div>
-              </div>
-            </div>
-            <div class="resume-entry-desc">
-              Built a Python packet capture tool using Scapy to detect suspicious network patterns including port scans,
-              ARP spoofing, and malformed packets. Outputs structured JSON reports.
-            </div>
-          </div>
-          <div class="resume-entry">
-            <div class="resume-entry-header">
-              <div>
-                <div class="resume-entry-title">OSINT Reconnaissance Framework</div>
-                <div class="resume-entry-org" style="font-size:0.8rem; color:var(--text-muted);">Python · Shodan API · DNS</div>
-              </div>
-            </div>
-            <div class="resume-entry-desc">
-              Modular passive reconnaissance toolkit aggregating WHOIS, DNS, certificate transparency logs,
-              and Shodan data. Designed for authorized penetration testing engagements.
-            </div>
-          </div>
-        </div>
-
-      </div>
+      <!-- Resume content is rendered by resume-editor.js from localStorage data -->
+      <div id="resume-content" class="resume-container"></div>
     </section>
   </main>
 
@@ -304,23 +89,7 @@
 
   <script src="../config.js"></script>
   <script src="../assets/js/main.js"></script>
-
-  <!-- Animate progress bars when visible -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.progress-fill[data-target]').forEach(bar => {
-        const obs = new IntersectionObserver(entries => {
-          entries.forEach(e => {
-            if (e.isIntersecting) {
-              bar.style.width = bar.dataset.target + '%';
-              obs.disconnect();
-            }
-          });
-        }, { threshold: 0.5 });
-        obs.observe(bar);
-      });
-    });
-  </script>
+  <script src="../assets/js/resume-editor.js"></script>
 
 </body>
 </html>

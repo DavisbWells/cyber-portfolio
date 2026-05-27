@@ -1,0 +1,310 @@
+/* resume-editor.css — Inline resume editor panel */
+
+/* ── Toggle button ─────────────────────────────────────────── */
+.resume-edit-toggle {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 900;
+  padding: 0.55rem 1.1rem;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 16px rgba(0, 255, 136, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s;
+}
+.resume-edit-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 255, 136, 0.45);
+}
+.resume-edit-toggle.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Editor panel ──────────────────────────────────────────── */
+.resume-editor-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 380px;
+  max-width: 100vw;
+  height: 100vh;
+  background: #0b0e14;
+  border-left: 1px solid var(--border);
+  z-index: 950;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -8px 0 40px rgba(0, 0, 0, 0.5);
+}
+.resume-editor-panel.open {
+  transform: translateX(0);
+}
+
+/* ── Panel header ──────────────────────────────────────────── */
+.editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.editor-title {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+}
+.editor-close-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  transition: color 0.15s, border-color 0.15s;
+  line-height: 1.4;
+}
+.editor-close-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
+/* ── Tabs ──────────────────────────────────────────────────── */
+.editor-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  background: rgba(0,0,0,0.2);
+}
+.editor-tab {
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 0.28rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.04em;
+}
+.editor-tab:hover {
+  color: var(--text-secondary);
+  border-color: var(--border);
+}
+.editor-tab.active {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(0, 255, 136, 0.07);
+}
+
+/* ── Scrollable body ───────────────────────────────────────── */
+.editor-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.editor-body::-webkit-scrollbar { width: 5px; }
+.editor-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+/* ── Fields ────────────────────────────────────────────────── */
+.editor-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.editor-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--text-muted);
+}
+.editor-input,
+.editor-textarea,
+.editor-select {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 0.42rem 0.6rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.15s, background 0.15s;
+  resize: vertical;
+}
+.editor-input:focus,
+.editor-textarea:focus,
+.editor-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(0, 255, 136, 0.04);
+}
+.editor-textarea {
+  min-height: 90px;
+  line-height: 1.55;
+}
+
+/* ── List items (certs, experience, projects) ──────────────── */
+.editor-list-item {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.editor-list-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.1rem;
+}
+.editor-item-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.editor-remove-btn {
+  background: none;
+  border: 1px solid #ff4444;
+  color: #ff4444;
+  border-radius: 4px;
+  padding: 0.18rem 0.5rem;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-family: var(--font-mono);
+}
+.editor-remove-btn:hover { background: rgba(255, 68, 68, 0.1); }
+.editor-remove-skill {
+  border: none;
+  padding: 0.2rem 0.45rem;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.editor-add-btn {
+  margin-top: 0.25rem;
+  width: 100%;
+  text-align: center;
+}
+.editor-add-skill-btn {
+  font-size: 0.72rem;
+  margin-top: 0.2rem;
+  align-self: flex-start;
+}
+
+/* ── Skills editor ─────────────────────────────────────────── */
+.editor-skill-category {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.editor-skill-cat-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.1rem;
+}
+.editor-cat-name { flex: 1; }
+.editor-skill-row {
+  display: grid;
+  grid-template-columns: 1fr 90px auto auto;
+  gap: 0.4rem;
+  align-items: center;
+}
+.editor-pct-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.editor-slider {
+  width: 52px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+.editor-pct-num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  min-width: 30px;
+  text-align: right;
+}
+.editor-select { padding: 0.4rem 0.4rem; }
+
+/* ── Bullet rows ───────────────────────────────────────────── */
+.editor-bullet-row {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+.editor-bullet-row .editor-input { flex: 1; }
+
+/* ── Footer ────────────────────────────────────────────────── */
+.editor-footer {
+  padding: 0.7rem 1.25rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  background: rgba(0,0,0,0.15);
+}
+.editor-save-status {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+.editor-save-status.saving { color: var(--accent); }
+
+/* ── Mobile: bottom sheet ──────────────────────────────────── */
+@media (max-width: 600px) {
+  .resume-editor-panel {
+    width: 100vw;
+    height: 72vh;
+    top: auto;
+    bottom: 0;
+    right: 0;
+    transform: translateY(100%);
+    border-left: none;
+    border-top: 1px solid var(--border);
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.5);
+  }
+  .resume-editor-panel.open { transform: translateY(0); }
+  .resume-edit-toggle { bottom: 1rem; right: 1rem; }
+  .editor-skill-row {
+    grid-template-columns: 1fr 80px auto auto;
+  }
+}
