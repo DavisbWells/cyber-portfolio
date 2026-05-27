@@ -249,7 +249,7 @@ const StatsLoader = (() => {
         'stat-certs':    certs.filter(c => c.status === 'earned').length,
         'stat-labs':     labs.length,
         'stat-projects': projects.filter(p => p.status === 'Complete').length,
-        'stat-streak':   47,
+        'stat-streak':   parseInt(localStorage.getItem('study_streak') ?? '0', 10),
       };
 
       Object.entries(stats).forEach(([id, value]) => {
@@ -559,6 +559,50 @@ function escapeHtml(str) {
 
 /* ── Page Initializers ──────────────────────────────────────── */
 
+/* ── Study Streak Controls ──────────────────────────────────── */
+
+function initStreakControls() {
+  const STREAK_KEY = 'study_streak';
+  const el       = document.getElementById('stat-streak');
+  const addBtn   = document.getElementById('streak-add');
+  const resetBtn = document.getElementById('streak-reset');
+  if (!addBtn || !resetBtn) return;
+
+  function getStreak() { return parseInt(localStorage.getItem(STREAK_KEY) ?? '0', 10); }
+  function setStreak(n) {
+    localStorage.setItem(STREAK_KEY, String(n));
+    if (el) el.textContent = n;
+  }
+
+  addBtn.addEventListener('click', () => setStreak(getStreak() + 1));
+  resetBtn.addEventListener('click', () => {
+    if (!confirm('Reset your study streak to 0?')) return;
+    setStreak(0);
+  });
+}
+
+/* ── What I'm Working On tabs ───────────────────────────────── */
+
+function initWIMOTabs() {
+  const tabBar = document.querySelector('.wimo-tabs');
+  if (!tabBar) return;
+
+  tabBar.addEventListener('click', e => {
+    const tab = e.target.closest('.wimo-tab');
+    if (!tab) return;
+
+    document.querySelectorAll('.wimo-tab').forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+    });
+    document.querySelectorAll('.wimo-panel').forEach(p => p.classList.remove('active'));
+
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+    document.querySelector(`.wimo-panel[data-panel="${tab.dataset.tab}"]`)?.classList.add('active');
+  });
+}
+
 function initHomePage() {
   // Terminal animation
   const termBody = document.querySelector('.terminal-body');
@@ -575,6 +619,12 @@ function initHomePage() {
 
   // Animated stats
   StatsLoader.load();
+
+  // Streak buttons
+  initStreakControls();
+
+  // What I'm Working On tabs
+  initWIMOTabs();
 }
 
 function initProjectsPage() {

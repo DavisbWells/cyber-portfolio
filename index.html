@@ -154,6 +154,10 @@
           <span class="stat-icon" aria-hidden="true">&#128293;</span>
           <div class="stat-number" id="stat-streak">—</div>
           <div class="stat-label">Day Study Streak</div>
+          <div class="streak-controls">
+            <button class="btn btn-sm btn-primary" id="streak-add" aria-label="Add one day to streak">+ Add Day</button>
+            <button class="btn btn-sm btn-ghost" id="streak-reset" aria-label="Reset streak to zero">Reset</button>
+          </div>
         </div>
 
       </div>
@@ -188,32 +192,53 @@
           <p>A living portfolio that grows with every lab, cert, and project.</p>
         </div>
 
-        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:1.25rem;">
-
-          <a href="sections/certifications.html" class="card reveal reveal-delay-1" style="text-decoration:none; display:flex; flex-direction:column; gap:0.75rem;">
-            <span style="font-size:2rem" aria-hidden="true">&#127941;</span>
-            <h3 style="font-size:1.1rem">Certifications</h3>
-            <p style="font-size:0.85rem; margin:0">Network+ in progress · Security+ planned · Tracking every step</p>
-          </a>
-
-          <a href="sections/labs.html" class="card reveal reveal-delay-2" style="text-decoration:none; display:flex; flex-direction:column; gap:0.75rem;">
-            <span style="font-size:2rem" aria-hidden="true">&#128300;</span>
-            <h3 style="font-size:1.1rem">Lab Writeups</h3>
-            <p style="font-size:0.85rem; margin:0">TryHackMe, Hack The Box — documented with notes and takeaways</p>
-          </a>
-
-          <a href="sections/homelab.html" class="card reveal reveal-delay-3" style="text-decoration:none; display:flex; flex-direction:column; gap:0.75rem;">
-            <span style="font-size:2rem" aria-hidden="true">&#128421;</span>
-            <h3 style="font-size:1.1rem">Homelab</h3>
-            <p style="font-size:0.85rem; margin:0">Virtualized SOC environment with pfSense, Splunk, and Kali</p>
-          </a>
-
-          <a href="sections/dashboard.html" class="card reveal reveal-delay-4" style="text-decoration:none; display:flex; flex-direction:column; gap:0.75rem;">
-            <span style="font-size:2rem" aria-hidden="true">&#128202;</span>
-            <h3 style="font-size:1.1rem">SOC Dashboard</h3>
-            <p style="font-size:0.85rem; margin:0">Simulated threat feed — a concept showcase, clearly labeled</p>
-          </a>
-
+        <div class="wimo-tabs" role="tablist" aria-label="Portfolio sections">
+          <button class="wimo-tab active" data-tab="certs" role="tab" aria-selected="true">&#127941; Certifications</button>
+          <button class="wimo-tab" data-tab="labs" role="tab" aria-selected="false">&#128300; Lab Writeups</button>
+          <button class="wimo-tab" data-tab="homelab" role="tab" aria-selected="false">&#128421; Homelab</button>
+          <button class="wimo-tab" data-tab="soc" role="tab" aria-selected="false">&#128202; SOC Dashboard</button>
+        </div>
+        <div class="wimo-content reveal">
+          <div class="wimo-panel active" data-panel="certs">
+            <div class="wimo-panel-inner">
+              <span class="wimo-icon" aria-hidden="true">&#127941;</span>
+              <div>
+                <h3>Certifications</h3>
+                <p>Network+ in progress &middot; Security+ planned &middot; Tracking every step toward earning each credential.</p>
+                <a href="sections/certifications.html" class="btn btn-primary btn-sm">View Certifications &#8599;</a>
+              </div>
+            </div>
+          </div>
+          <div class="wimo-panel" data-panel="labs">
+            <div class="wimo-panel-inner">
+              <span class="wimo-icon" aria-hidden="true">&#128300;</span>
+              <div>
+                <h3>Lab Writeups</h3>
+                <p>TryHackMe, Hack The Box &mdash; documented with notes, takeaways, and techniques used in each exercise.</p>
+                <a href="sections/labs.html" class="btn btn-primary btn-sm">View Lab Writeups &#8599;</a>
+              </div>
+            </div>
+          </div>
+          <div class="wimo-panel" data-panel="homelab">
+            <div class="wimo-panel-inner">
+              <span class="wimo-icon" aria-hidden="true">&#128421;</span>
+              <div>
+                <h3>Homelab</h3>
+                <p>Virtualized SOC environment with pfSense, Splunk, and Kali Linux for hands-on security practice.</p>
+                <a href="sections/homelab.html" class="btn btn-primary btn-sm">View Homelab &#8599;</a>
+              </div>
+            </div>
+          </div>
+          <div class="wimo-panel" data-panel="soc">
+            <div class="wimo-panel-inner">
+              <span class="wimo-icon" aria-hidden="true">&#128202;</span>
+              <div>
+                <h3>SOC Dashboard</h3>
+                <p>Simulated threat feed and analyst dashboard &mdash; a concept showcase, clearly labeled as a demo environment.</p>
+                <a href="sections/dashboard.html" class="btn btn-primary btn-sm">View Dashboard &#8599;</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -233,6 +258,7 @@
         <li><a href="sections/resume.html">Resume</a></li>
       </ul>
       <div class="footer-copy">
+        <em class="footer-verse">&ldquo;Do not conform to the pattern of this world, but be transformed by the renewing of your mind.&rdquo; &mdash; Romans 12:2</em>
         Built with vanilla HTML, CSS &amp; JS &bull; Deployed on GitHub Pages
       </div>
     </div>
