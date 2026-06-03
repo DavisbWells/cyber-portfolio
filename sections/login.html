@@ -15,47 +15,63 @@
   <link rel="stylesheet" href="../assets/css/components.css">
   <link rel="stylesheet" href="../assets/css/animations.css">
   <style>
-    /* ── Centered card wrapper ───────────────────────────────── */
-    .login-center {
+    /* ── Full-height centering stage ─────────────────────────── */
+    .login-stage {
+      min-height: calc(100vh - var(--nav-h));
       display: flex;
+      align-items: center;
       justify-content: center;
-      padding: var(--sp-12) var(--sp-4) var(--sp-16);
+      padding: var(--sp-8) var(--sp-4);
     }
 
-    /* ── Card ────────────────────────────────────────────────── */
-    .login-card {
+    /* ── Inner block: heading + green panel + back link ──────── */
+    .login-block {
       width: 100%;
-      max-width: 440px;
-      background: var(--bg-card);
-      border: 1px solid var(--green-border);
-      border-radius: var(--radius-xl);
-      padding: 2.75rem 2.5rem;
-      box-shadow: var(--shadow-lg);
+      max-width: 460px;
       text-align: center;
-      animation: fade-in-up 0.55s cubic-bezier(0.4, 0, 0.2, 1) both,
-                 glow-pulse 4s ease-in-out 0.55s infinite;
+      animation: fade-in-up 0.55s cubic-bezier(0.4, 0, 0.2, 1) both;
     }
 
-    /* ── Staggered children ──────────────────────────────────── */
-    .login-icon,
+    /* ── Heading above the panel ─────────────────────────────── */
+    .login-heading {
+      margin-bottom: var(--sp-6);
+      animation: fade-in-up 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.10s both;
+    }
+    .login-heading h1 {
+      font-size: 2rem;
+      margin-bottom: var(--sp-2);
+    }
+    .login-heading .page-cmd {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .login-heading .page-cmd::before {
+      content: '$ ';
+      color: var(--green);
+    }
+
+    /* ── Green rectangle panel ───────────────────────────────── */
+    .login-panel {
+      background: rgba(0, 255, 136, 0.13);
+      border: 1px solid var(--green);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem 2.25rem;
+      box-shadow: 0 0 32px rgba(0, 255, 136, 0.12);
+      animation: fade-in-up 0.55s cubic-bezier(0.4, 0, 0.2, 1) 0.18s both,
+                 glow-pulse 4s ease-in-out 0.7s infinite;
+    }
+
+    /* ── Staggered form elements ─────────────────────────────── */
     .form-group,
     .login-error,
-    .btn-login,
-    .login-back {
+    .btn-login {
       animation: fade-in-up 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
     }
-    .login-icon            { animation-delay: 0.20s; }
-    .form-group:nth-of-type(1) { animation-delay: 0.28s; }
-    .form-group:nth-of-type(2) { animation-delay: 0.35s; }
-    .btn-login             { animation-delay: 0.42s; }
-    .login-back            { animation-delay: 0.50s; }
-
-    /* ── Lock icon ───────────────────────────────────────────── */
-    .login-icon {
-      font-size: 2.5rem;
-      line-height: 1;
-      margin-bottom: var(--sp-5);
-    }
+    .login-error               { animation-delay: 0.24s; }
+    .form-group:nth-of-type(1) { animation-delay: 0.30s; }
+    .form-group:nth-of-type(2) { animation-delay: 0.38s; }
+    .btn-login                 { animation-delay: 0.46s; }
 
     /* ── Form fields ─────────────────────────────────────────── */
     .form-group {
@@ -66,7 +82,7 @@
       display: block;
       font-size: 0.78rem;
       font-weight: 600;
-      color: var(--text-muted);
+      color: var(--text-primary);
       text-transform: uppercase;
       letter-spacing: 0.08em;
       margin-bottom: 0.5rem;
@@ -86,14 +102,14 @@
     .form-group input:focus {
       background: #151f2e;
       border-color: var(--green);
-      box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.12);
+      box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.15);
     }
     .form-group input::placeholder { color: var(--text-dim); }
 
     /* ── Error block ─────────────────────────────────────────── */
     .login-error {
-      background: rgba(239, 68, 68, 0.08);
-      border: 1px solid rgba(239, 68, 68, 0.25);
+      background: rgba(239, 68, 68, 0.10);
+      border: 1px solid rgba(239, 68, 68, 0.30);
       border-radius: var(--radius);
       padding: 10px 14px;
       font-size: 0.85rem;
@@ -108,15 +124,16 @@
     .btn-login {
       width: 100%;
       justify-content: center;
-      margin-top: 0.5rem;
+      margin-top: 0.25rem;
     }
 
-    /* ── Back link ───────────────────────────────────────────── */
+    /* ── Back link below panel ───────────────────────────────── */
     .login-back {
       display: block;
-      margin-top: 1.5rem;
-      font-size: 0.8rem;
+      margin-top: var(--sp-5);
+      font-size: 0.82rem;
       color: var(--text-muted);
+      animation: fade-in-up 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.54s both;
     }
     .login-back a { color: var(--text-muted); text-decoration: none; }
     .login-back a:hover { color: var(--green); }
@@ -163,58 +180,57 @@
   </nav>
 
   <main>
+    <div class="login-stage">
+      <div class="login-block">
 
-    <!-- ── Page Hero ───────────────────────────────────────────── -->
-    <section class="page-hero">
-      <div class="container">
-        <h1>Admin Login</h1>
-        <div class="page-cmd">sudo admin --authenticate</div>
-      </div>
-    </section>
+        <!-- Heading -->
+        <div class="login-heading">
+          <h1>Admin Login</h1>
+          <div class="page-cmd">sudo admin --authenticate</div>
+        </div>
 
-    <!-- ── Login Form ───────────────────────────────────────────── -->
-    <div class="login-center">
-      <div class="login-card">
+        <!-- Green rectangle panel -->
+        <div class="login-panel">
 
-        <div class="login-icon" aria-hidden="true">&#128274;</div>
+          <div class="login-error" id="login-error" role="alert" aria-live="polite"></div>
 
-        <div class="login-error" id="login-error" role="alert" aria-live="polite"></div>
+          <form id="login-form" novalidate>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required>
+            </div>
 
-        <form id="login-form" novalidate>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="you@example.com"
-              autocomplete="email"
-              required>
-          </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="••••••••"
+                autocomplete="current-password"
+                required>
+            </div>
 
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="••••••••"
-              autocomplete="current-password"
-              required>
-          </div>
+            <button type="submit" class="btn btn-primary btn-login" id="submit-btn">
+              Sign In
+            </button>
+          </form>
 
-          <button type="submit" class="btn btn-primary btn-login" id="submit-btn">
-            Sign In
-          </button>
-        </form>
+        </div>
 
+        <!-- Back link sits outside the green panel -->
         <div class="login-back">
           <a href="../index.html">&#8592; Back to portfolio</a>
         </div>
 
       </div>
     </div>
-
   </main>
 
   <script src="../config.js"></script>
