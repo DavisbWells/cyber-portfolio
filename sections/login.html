@@ -15,34 +15,59 @@
   <link rel="stylesheet" href="../assets/css/components.css">
   <link rel="stylesheet" href="../assets/css/animations.css">
   <style>
-    /* Login page specific layout */
+    /* ── Login page layout ───────────────────────────────────── */
     .login-wrap {
-      min-height: 100vh;
+      min-height: calc(100vh - var(--nav-h));
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
+      padding: var(--sp-8) var(--sp-4);
     }
+
+    /* ── Animated card ───────────────────────────────────────── */
     .login-card {
       width: 100%;
-      max-width: 420px;
+      max-width: 440px;
       background: var(--bg-card);
-      border: 1px solid var(--border);
+      border: 1px solid var(--green-border);
       border-radius: var(--radius-xl);
-      padding: 2.5rem;
+      padding: 2.75rem 2.5rem;
       box-shadow: var(--shadow-lg);
+      animation: fade-in-up 0.55s cubic-bezier(0.4, 0, 0.2, 1) both, glow-pulse 4s ease-in-out 0.55s infinite;
     }
+
+    /* ── Internal staggered elements ─────────────────────────── */
+    .login-logo,
+    .login-card h1,
+    .login-sub,
+    .login-error,
+    .form-group,
+    .btn-login,
+    .login-back {
+      animation: fade-in-up 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+    .login-logo      { animation-delay: 0.15s; }
+    .login-card h1   { animation-delay: 0.22s; }
+    .login-sub       { animation-delay: 0.28s; }
+    .form-group:nth-of-type(1) { animation-delay: 0.34s; }
+    .form-group:nth-of-type(2) { animation-delay: 0.40s; }
+    .btn-login       { animation-delay: 0.46s; }
+    .login-back      { animation-delay: 0.52s; }
+
+    /* ── Logo / header text ──────────────────────────────────── */
     .login-logo {
       font-family: var(--font-mono);
       font-size: 0.85rem;
       color: var(--text-muted);
-      margin-bottom: 2rem;
+      margin-bottom: 1.75rem;
       text-align: center;
     }
     .login-logo span { color: var(--green); }
+
     .login-card h1 {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       margin-bottom: 0.25rem;
+      color: var(--text-primary);
     }
     .login-sub {
       font-family: var(--font-mono);
@@ -50,38 +75,43 @@
       color: var(--text-muted);
       margin-bottom: 2rem;
     }
+
+    /* ── Form fields ─────────────────────────────────────────── */
     .form-group {
       margin-bottom: 1.25rem;
     }
     .form-group label {
       display: block;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
       color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       margin-bottom: 0.5rem;
     }
     .form-group input {
       width: 100%;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-light);
       border-radius: var(--radius);
       color: var(--text-primary);
       font-family: var(--font-body);
       font-size: 0.95rem;
-      padding: 10px 14px;
-      transition: border-color var(--t-fast), box-shadow var(--t-fast);
+      padding: 11px 14px;
+      transition: border-color var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
       outline: none;
     }
     .form-group input:focus {
-      border-color: var(--green-border);
-      box-shadow: 0 0 0 3px rgba(0,255,136,0.08);
+      background: #151f2e;
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.12);
     }
     .form-group input::placeholder { color: var(--text-dim); }
+
+    /* ── Error block ─────────────────────────────────────────── */
     .login-error {
-      background: rgba(239,68,68,0.08);
-      border: 1px solid rgba(239,68,68,0.25);
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.25);
       border-radius: var(--radius);
       padding: 10px 14px;
       font-size: 0.85rem;
@@ -90,11 +120,15 @@
       display: none;
     }
     .login-error.visible { display: block; }
+
+    /* ── Submit button ───────────────────────────────────────── */
     .btn-login {
       width: 100%;
       justify-content: center;
       margin-top: 0.5rem;
     }
+
+    /* ── Back link ───────────────────────────────────────────── */
     .login-back {
       display: block;
       text-align: center;
@@ -102,61 +136,105 @@
       font-size: 0.8rem;
       color: var(--text-muted);
     }
-    .login-back a { color: var(--text-muted); }
+    .login-back a { color: var(--text-muted); text-decoration: none; }
     .login-back a:hover { color: var(--green); }
   </style>
 </head>
-<body>
+<body data-page="login">
 
-  <div class="login-wrap">
-    <div class="login-card">
+  <!-- ── Navigation ──────────────────────────────────────────── -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo" aria-label="Home">
+        <span class="bracket">[</span>Davis Wells<span class="bracket">]</span>
+      </a>
 
-      <div class="login-logo">
-        <span>[</span>Cyber Ops<span>]</span> — Admin
+      <ul class="nav-links" role="list">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+        <li><a href="labs.html">Labs</a></li>
+        <li><a href="homelab.html">Homelab</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="login.html" class="active">Admin</a></li>
+      </ul>
+
+      <div class="nav-status" aria-label="System status: operational">
+        <span class="status-dot" aria-hidden="true"></span>
+        Systems Operational
       </div>
 
-      <h1>Sign In</h1>
-      <div class="login-sub">$ sudo admin --authenticate</div>
-
-      <div class="login-error" id="login-error" role="alert" aria-live="polite"></div>
-
-      <form id="login-form" novalidate>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="you@example.com"
-            autocomplete="email"
-            required>
-        </div>
-
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="••••••••"
-            autocomplete="current-password"
-            required>
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-login" id="submit-btn">
-          Sign In
-        </button>
-      </form>
-
-      <div class="login-back">
-        <a href="../index.html">&#8592; Back to portfolio</a>
-      </div>
-
+      <button class="nav-hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-  </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <nav id="mobile-nav" class="nav-mobile" aria-label="Mobile navigation">
+    <a href="../index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="certifications.html">Certifications</a>
+    <a href="labs.html">Labs</a>
+    <a href="homelab.html">Homelab</a>
+    <a href="resume.html">Resume</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="login.html">Admin</a>
+  </nav>
+
+  <main>
+    <div class="login-wrap">
+      <div class="login-card">
+
+        <div class="login-logo">
+          <span>[</span>Cyber Ops<span>]</span> &mdash; Admin
+        </div>
+
+        <h1>Sign In</h1>
+        <div class="login-sub">$ sudo admin --authenticate</div>
+
+        <div class="login-error" id="login-error" role="alert" aria-live="polite"></div>
+
+        <form id="login-form" novalidate>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              required>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-login" id="submit-btn">
+            Sign In
+          </button>
+        </form>
+
+        <div class="login-back">
+          <a href="../index.html">&#8592; Back to portfolio</a>
+        </div>
+
+      </div>
+    </div>
+  </main>
 
   <script src="../config.js"></script>
   <script src="../assets/js/supabase-client.js"></script>
+  <script src="../assets/js/main.js"></script>
   <script src="../assets/js/login.js"></script>
 
 </body>
