@@ -15,18 +15,14 @@
   <link rel="stylesheet" href="../assets/css/components.css">
   <link rel="stylesheet" href="../assets/css/animations.css">
   <style>
-    /* ── Full-height chain so flex centering actually works ─────── */
-    html, body { height: 100%; }
-    body[data-page="login"] {
-      display: flex;
-      flex-direction: column;
-    }
+    /* ── Viewport-relative height so centering always works ─────── */
     body[data-page="login"] main {
-      flex: 1;
+      height: calc(100vh - 64px);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: var(--sp-8) var(--sp-4);
+      padding: 2rem 1rem;
+      overflow-y: auto;
     }
 
     /* ── Inner block: heading + green panel + back link ──────── */
