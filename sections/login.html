@@ -15,9 +15,14 @@
   <link rel="stylesheet" href="../assets/css/components.css">
   <link rel="stylesheet" href="../assets/css/animations.css">
   <style>
-    /* ── Full-height centering — applied directly to main ───────── */
+    /* ── Full-height chain so flex centering actually works ─────── */
+    html, body { height: 100%; }
+    body[data-page="login"] {
+      display: flex;
+      flex-direction: column;
+    }
     body[data-page="login"] main {
-      min-height: calc(100vh - var(--nav-h));
+      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
