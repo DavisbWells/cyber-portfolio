@@ -15,8 +15,8 @@
   <link rel="stylesheet" href="../assets/css/components.css">
   <link rel="stylesheet" href="../assets/css/animations.css">
   <style>
-    /* ── Full-height centering stage ─────────────────────────── */
-    .login-stage {
+    /* ── Full-height centering — applied directly to main ───────── */
+    body[data-page="login"] main {
       min-height: calc(100vh - var(--nav-h));
       display: flex;
       align-items: center;
@@ -180,8 +180,7 @@
   </nav>
 
   <main>
-    <div class="login-stage">
-      <div class="login-block">
+    <div class="login-block">
 
         <!-- Heading -->
         <div class="login-heading">
@@ -229,7 +228,6 @@
           <a href="../index.html">&#8592; Back to portfolio</a>
         </div>
 
-      </div>
     </div>
   </main>
 
