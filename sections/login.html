@@ -15,12 +15,12 @@
   <link rel="stylesheet" href="../assets/css/components.css">
   <link rel="stylesheet" href="../assets/css/animations.css">
   <style>
-    /* ── Viewport-relative height so centering always works ─────── */
-    body[data-page="login"] main {
+    /* ── Force true vertical + horizontal centering ─────────────── */
+    main {
       height: calc(100vh - 64px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
       padding: 2rem 1rem;
       overflow-y: auto;
     }
