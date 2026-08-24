@@ -25,7 +25,16 @@ const ResumeEditor = (() => {
       activities: '',
     },
     certifications: [],
-    skills: [],
+    skills: [
+      {
+        category: 'Platforms & Tools',
+        items: [
+          { name: 'Vercel', level: 'Familiar', pct: 40 },
+          { name: 'Supabase', level: 'Familiar', pct: 40 },
+          { name: 'GitHub', level: 'Familiar', pct: 40 },
+        ],
+      },
+    ],
     experience: [],
     projects: [],
   };
