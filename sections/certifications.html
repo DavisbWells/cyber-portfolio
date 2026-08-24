@@ -69,7 +69,7 @@
           <div>
             <strong>Certification Roadmap</strong> —
             Building toward DoD 8570/8140 compliance for government contracting roles.
-            Priority path: <strong>Network+ → Security+ → CEH</strong>.
+            Priority path: <strong>A+ → Network+ → Security+ → CySA+ → CEH</strong>.
           </div>
         </div>
 
@@ -81,29 +81,16 @@
         <!-- Timeline -->
         <div style="margin-top:var(--sp-12)">
           <h2 style="font-size:1.5rem; margin-bottom:var(--sp-8);">Certification Timeline</h2>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:var(--sp-6);">
+            Reflects the same certifications managed in the admin panel — add, edit, or remove entries there and this timeline updates automatically.
+          </p>
           <div style="position:relative; padding-left:2rem;">
             <!-- Vertical line -->
             <div style="position:absolute; left:7px; top:0; bottom:0; width:2px; background:var(--border);"></div>
 
-            <div style="margin-bottom:var(--sp-8); position:relative;">
-              <div style="position:absolute; left:-1.6rem; top:4px; width:14px; height:14px; border-radius:50%; background:var(--yellow); border:2px solid var(--bg-primary);"></div>
-              <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--yellow); margin-bottom:4px;">Target: Aug 2026</div>
-              <div style="font-weight:600;">CompTIA Network+ (N10-008)</div>
-              <div style="font-size:0.85rem; color:var(--text-muted);">Currently studying — 65% through Professor Messer's course and GNS3 lab work.</div>
-            </div>
-
-            <div style="margin-bottom:var(--sp-8); position:relative;">
-              <div style="position:absolute; left:-1.6rem; top:4px; width:14px; height:14px; border-radius:50%; background:var(--border); border:2px solid var(--bg-primary);"></div>
-              <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted); margin-bottom:4px;">Target: Dec 2026</div>
-              <div style="font-weight:600;">CompTIA Security+ (SY0-701)</div>
-              <div style="font-size:0.85rem; color:var(--text-muted);">DoD 8570/8140 compliant — required for most government contracting roles.</div>
-            </div>
-
-            <div style="position:relative;">
-              <div style="position:absolute; left:-1.6rem; top:4px; width:14px; height:14px; border-radius:50%; background:var(--border); border:2px solid var(--bg-primary);"></div>
-              <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted); margin-bottom:4px;">Target: Jun 2027</div>
-              <div style="font-weight:600;">Certified Ethical Hacker (CEH v13)</div>
-              <div style="font-size:0.85rem; color:var(--text-muted);">Advanced offensive security validation. Targeted after Security+ achievement.</div>
+            <!-- Timeline entries injected by main.js (CertTimeline.load) -->
+            <div id="certs-timeline" aria-label="Certification timeline">
+              <p style="color:var(--text-muted);">Loading timeline...</p>
             </div>
           </div>
         </div>

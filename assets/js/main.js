@@ -546,6 +546,73 @@ const CertCards = (() => {
   return { load };
 })();
 
+/* ── Certification Timeline Builder ─────────────────────────── */
+/* Renders the same certifications data used by CertCards as a   */
+/* chronological timeline, so add/remove in the admin panel keeps */
+/* both views in sync — no separately hand-maintained list.       */
+
+const CertTimeline = (() => {
+  const dotColor = {
+    'earned':      'var(--green)',
+    'in-progress': 'var(--yellow)',
+    'planned':     'var(--border)',
+  };
+  const labelColor = {
+    'earned':      'var(--green)',
+    'in-progress': 'var(--yellow)',
+    'planned':     'var(--text-muted)',
+  };
+
+  // Sorts "YYYY-MM" strings chronologically; anything else (e.g. "Summer 2027", "TBD")
+  // sorts after all parseable dates, in the order it was fetched.
+  function dateKey(str) {
+    const m = String(str || '').match(/(\d{4})-(\d{2})/);
+    return m ? (parseInt(m[1], 10) * 12 + parseInt(m[2], 10)) : Infinity;
+  }
+
+  function renderItem(cert, isLast) {
+    const color = dotColor[cert.status] || 'var(--border)';
+    const label = labelColor[cert.status] || 'var(--text-muted)';
+    const dateText = cert.status === 'earned'
+      ? `Earned: ${cert.date_earned || '—'}`
+      : `Target: ${cert.date_planned || 'TBD'}`;
+    const margin = isLast ? '' : 'margin-bottom:var(--sp-8);';
+
+    return `
+      <div style="${margin} position:relative;">
+        <div style="position:absolute; left:-1.6rem; top:4px; width:14px; height:14px; border-radius:50%; background:${color}; border:2px solid var(--bg-primary);"></div>
+        <div style="font-family:var(--font-mono); font-size:0.75rem; color:${label}; margin-bottom:4px;">${escapeHtml(dateText)}</div>
+        <div style="font-weight:600;">${escapeHtml(cert.name)}${cert.code ? ` (${escapeHtml(cert.code)})` : ''}</div>
+        <div style="font-size:0.85rem; color:var(--text-muted);">${escapeHtml(cert.description || '')}</div>
+      </div>`;
+  }
+
+  async function load(containerSelector) {
+    const container = document.querySelector(containerSelector);
+    if (!container) return;
+
+    try {
+      const certs = await DataSource.fetchCertifications();
+
+      if (certs.length === 0) {
+        container.innerHTML = '<p style="color:var(--text-muted)">No certifications added yet — add some via the admin panel.</p>';
+        return;
+      }
+
+      const sorted = [...certs].sort(
+        (a, b) => dateKey(a.date_earned || a.date_planned) - dateKey(b.date_earned || b.date_planned)
+      );
+
+      container.innerHTML = sorted.map((c, i) => renderItem(c, i === sorted.length - 1)).join('');
+    } catch (err) {
+      container.innerHTML = '<p style="color:var(--text-muted)">Timeline temporarily unavailable.</p>';
+      console.error('CertTimeline:', err);
+    }
+  }
+
+  return { load };
+})();
+
 /* ── Utility: Escape HTML ───────────────────────────────────── */
 function escapeHtml(str) {
   if (typeof str !== 'string') return '';
@@ -639,6 +706,7 @@ function initLabsPage() {
 
 function initCertsPage() {
   CertCards.load('#certs-grid');
+  CertTimeline.load('#certs-timeline');
 }
 
 /* ── Bootstrap ──────────────────────────────────────────────── */
