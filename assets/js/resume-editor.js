@@ -16,10 +16,11 @@ const ResumeEditor = (() => {
   const DEFAULTS = {
     summary: '',
     education: {
-      degree: '',
+      degree: 'Bachelor of Business Administration — Computer Information Systems',
       school: '',
       date: '',
       gpa: '',
+      minor: 'Cybercrime (possible second minor: Criminal Justice — TBD)',
       coursework: '',
       activities: '',
     },
@@ -116,6 +117,7 @@ const ResumeEditor = (() => {
             <div class="resume-entry-date">${e(ed.date)}</div>
           </div>
           <ul style="list-style:disc;padding-left:1.25rem;margin-top:.5rem">
+            ${ed.minor ? `<li style="font-size:.875rem;color:var(--text-muted);margin-bottom:4px">Minor: ${e(ed.minor)}</li>` : ''}
             ${ed.coursework ? `<li style="font-size:.875rem;color:var(--text-muted);margin-bottom:4px">Relevant coursework: ${e(ed.coursework)}</li>` : ''}
             ${ed.gpa ? `<li style="font-size:.875rem;color:var(--text-muted);margin-bottom:4px">GPA: ${e(ed.gpa)} / 4.0</li>` : ''}
             ${ed.activities ? `<li style="font-size:.875rem;color:var(--text-muted)">Member: ${e(ed.activities)}</li>` : ''}
@@ -362,6 +364,7 @@ const ResumeEditor = (() => {
     body.appendChild(wrapField('School / University',  makeInput(ed.school,     v => { ed.school     = v; })));
     body.appendChild(wrapField('Date',                 makeInput(ed.date,       v => { ed.date       = v; })));
     body.appendChild(wrapField('GPA',                  makeInput(ed.gpa,        v => { ed.gpa        = v; })));
+    body.appendChild(wrapField('Minor(s)',             makeInput(ed.minor,      v => { ed.minor      = v; })));
     body.appendChild(wrapField('Relevant Coursework',  makeInput(ed.coursework, v => { ed.coursework = v; })));
     body.appendChild(wrapField('Activities / Clubs',   makeInput(ed.activities, v => { ed.activities = v; })));
   }
