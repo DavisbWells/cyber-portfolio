@@ -28,34 +28,34 @@ const ResumeEditor = (() => {
       {
         category: 'Networking',
         items: [
-          { name: 'TCP/IP & Subnetting', level: 'Strong', pct: 82 },
-          { name: 'Routing & Switching', level: 'Developing', pct: 60 },
-          { name: 'Wireshark / PCAP Analysis', level: 'Proficient', pct: 75 },
-          { name: 'pfSense / Firewall Rules', level: 'Developing', pct: 55 },
+          { name: 'TCP/IP & Subnetting', level: 'Developing', pct: 50 },
+          { name: 'Routing & Switching', level: 'Developing', pct: 50 },
+          { name: 'Wireshark / PCAP Analysis', level: 'Developing', pct: 50 },
+          { name: 'pfSense / Firewall Rules', level: 'Developing', pct: 50 },
         ],
       },
       {
         category: 'Platforms & Tools',
         items: [
-          { name: 'Vercel', level: 'Familiar', pct: 40 },
-          { name: 'Supabase', level: 'Familiar', pct: 40 },
-          { name: 'GitHub', level: 'Familiar', pct: 40 },
+          { name: 'Vercel', level: 'Developing', pct: 50 },
+          { name: 'Supabase', level: 'Developing', pct: 50 },
+          { name: 'GitHub', level: 'Developing', pct: 50 },
         ],
       },
       {
         category: 'Programming & Scripting',
         items: [
-          { name: 'Python', level: 'Proficient', pct: 75 },
-          { name: 'Bash / Shell', level: 'Proficient', pct: 70 },
-          { name: 'SQL', level: 'Familiar', pct: 55 },
-          { name: 'PowerShell', level: 'Familiar', pct: 45 },
+          { name: 'Python', level: 'Developing', pct: 50 },
+          { name: 'Bash / Shell', level: 'Developing', pct: 50 },
+          { name: 'SQL', level: 'Developing', pct: 50 },
+          { name: 'PowerShell', level: 'Developing', pct: 50 },
         ],
       },
       {
         category: 'Operating Systems',
         items: [
-          { name: 'Linux (Kali, Ubuntu)', level: 'Proficient', pct: 78 },
-          { name: 'Windows / Windows Server', level: 'Proficient', pct: 72 },
+          { name: 'Linux (Kali, Ubuntu)', level: 'Developing', pct: 50 },
+          { name: 'Windows / Windows Server', level: 'Developing', pct: 50 },
         ],
       },
     ],
