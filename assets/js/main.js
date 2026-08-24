@@ -563,11 +563,33 @@ const CertTimeline = (() => {
     'planned':     'var(--text-muted)',
   };
 
-  // Sorts "YYYY-MM" strings chronologically; anything else (e.g. "Summer 2027", "TBD")
-  // sorts after all parseable dates, in the order it was fetched.
+  const MONTHS = {
+    jan: 1, january: 1, feb: 2, february: 2, mar: 3, march: 3, apr: 4, april: 4,
+    may: 5, jun: 6, june: 6, jul: 7, july: 7, aug: 8, august: 8,
+    sep: 9, sept: 9, september: 9, oct: 10, october: 10, nov: 11, november: 11, dec: 12, december: 12,
+  };
+
+  // Converts a free-text date_planned/date_earned value into a sortable
+  // year*12+month number, so entries like "2026-08", "2027-August", and
+  // "2027-2028" all sort chronologically instead of only strict "YYYY-MM".
+  // Values with no recognizable year (e.g. "TBD") sort after everything else.
   function dateKey(str) {
-    const m = String(str || '').match(/(\d{4})-(\d{2})/);
-    return m ? (parseInt(m[1], 10) * 12 + parseInt(m[2], 10)) : Infinity;
+    const s = String(str || '').trim().toLowerCase();
+    const years = s.match(/\d{4}/g);
+    if (!years) return Infinity;
+    const year = parseInt(years[0], 10);
+
+    const numMonth = s.match(/^\d{4}-(\d{1,2})(?!\d)/);
+    if (numMonth && +numMonth[1] >= 1 && +numMonth[1] <= 12) {
+      return year * 12 + parseInt(numMonth[1], 10);
+    }
+
+    const monthWord = Object.keys(MONTHS).find(name => s.includes(name));
+    if (monthWord) return year * 12 + MONTHS[monthWord];
+
+    // No month found — e.g. a bare year or a "2027-2028" range. Use mid-year
+    // as a reasonable estimate so it still sorts near its neighbors.
+    return year * 12 + 6;
   }
 
   function renderItem(cert, isLast) {
