@@ -17,9 +17,9 @@ const ResumeEditor = (() => {
     summary: 'Cybersecurity student pursuing CompTIA Network+ and Security+ certifications with hands-on experience through a virtualized homelab, TryHackMe/HTB labs, and personal security tool development. Strong foundational knowledge in networking protocols, log analysis, SIEM platforms, and Python scripting. Targeting entry-level SOC analyst and security analyst roles in the government contracting sector, with a long-term goal of working in federal cybersecurity.',
     education: {
       degree: 'Bachelor of Business Administration — Computer Information Systems',
-      school: '',
-      date: '',
-      gpa: '',
+      school: 'North Carolina Wesleyan University',
+      date: 'Expected May 2028',
+      gpa: '3.90',
       minor: 'Cybercrime (possible second minor: Criminal Justice — TBD)',
       coursework: '',
       activities: '',
