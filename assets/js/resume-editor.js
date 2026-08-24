@@ -14,89 +14,19 @@ const ResumeEditor = (() => {
   const STORAGE_KEY = 'resume_data_v1';
 
   const DEFAULTS = {
-    summary: 'Cybersecurity student pursuing CompTIA Network+ and Security+ certifications with hands-on experience through a virtualized homelab, TryHackMe/HTB labs, and personal security tool development. Strong foundational knowledge in networking protocols, log analysis, SIEM platforms, and Python scripting. Targeting entry-level SOC analyst and security analyst roles in the government contracting sector, with a long-term goal of working in federal cybersecurity.',
+    summary: '',
     education: {
-      degree: 'Bachelor of Science — Cybersecurity',
-      school: 'North Carolina Wesleyan University',
-      date: 'Expected May 2027',
-      gpa: 'X.X',
-      coursework: 'Network Security, Cryptography, Digital Forensics, Ethical Hacking',
-      activities: 'Cybersecurity Club, Capture the Flag (CTF) Team',
+      degree: '',
+      school: '',
+      date: '',
+      gpa: '',
+      coursework: '',
+      activities: '',
     },
-    certifications: [
-      { title: 'Google Cybersecurity Professional Certificate', org: 'Google / Coursera', date: 'Jan 2026' },
-      { title: 'CompTIA Network+ (N10-008)', org: 'CompTIA', date: 'In Progress — Target Aug 2026' },
-      { title: 'CompTIA Security+ (SY0-701)', org: 'CompTIA', date: 'Planned — Dec 2026' },
-    ],
-    skills: [
-      {
-        category: 'Networking',
-        items: [
-          { name: 'TCP/IP & Subnetting', level: 'Strong', pct: 82 },
-          { name: 'Routing & Switching', level: 'Developing', pct: 60 },
-          { name: 'Wireshark / PCAP Analysis', level: 'Proficient', pct: 75 },
-          { name: 'pfSense / Firewall Rules', level: 'Developing', pct: 55 },
-        ],
-      },
-      {
-        category: 'Security Tools',
-        items: [
-          { name: 'Nmap', level: 'Proficient', pct: 80 },
-          { name: 'Splunk SIEM', level: 'Developing', pct: 60 },
-          { name: 'Burp Suite', level: 'Familiar', pct: 45 },
-          { name: 'Metasploit', level: 'Familiar', pct: 40 },
-        ],
-      },
-      {
-        category: 'Programming & Scripting',
-        items: [
-          { name: 'Python', level: 'Proficient', pct: 75 },
-          { name: 'Bash / Shell', level: 'Proficient', pct: 70 },
-          { name: 'SQL', level: 'Familiar', pct: 55 },
-          { name: 'PowerShell', level: 'Familiar', pct: 45 },
-        ],
-      },
-      {
-        category: 'Operating Systems',
-        items: [
-          { name: 'Linux (Kali, Ubuntu)', level: 'Proficient', pct: 78 },
-          { name: 'Windows / Windows Server', level: 'Proficient', pct: 72 },
-        ],
-      },
-    ],
-    experience: [
-      {
-        title: 'IT Help Desk Assistant',
-        org: 'University IT Department',
-        date: 'Sep 2025 – Present',
-        bullets: [
-          'Provided Tier 1 technical support for 500+ students and faculty',
-          'Resolved network connectivity, account access, and software issues via ticket system',
-          'Assisted with workstation imaging, patch deployment, and endpoint configuration',
-        ],
-      },
-      {
-        title: 'Freelance Technical Troubleshooting',
-        org: 'Self-Employed',
-        date: '2023 – 2025',
-        bullets: [
-          'Diagnosed and resolved hardware and software issues for small businesses',
-          'Configured home network infrastructure including routers, switches, and basic security',
-        ],
-      },
-    ],
-    projects: [
-      {
-        title: 'Network Packet Analyzer',
-        tech: 'Python · Scapy · Wireshark',
-        desc: 'Built a Python packet capture tool using Scapy to detect suspicious network patterns including port scans, ARP spoofing, and malformed packets. Outputs structured JSON reports.',
-      },
-      {
-        title: 'OSINT Reconnaissance Framework',
-        tech: 'Python · Shodan API · DNS',
-        desc: 'Modular passive reconnaissance toolkit aggregating WHOIS, DNS, certificate transparency logs, and Shodan data. Designed for authorized penetration testing engagements.',
-      },
-    ],
+    certifications: [],
+    skills: [],
+    experience: [],
+    projects: [],
   };
 
   let data        = {};
