@@ -14,7 +14,7 @@ const ResumeEditor = (() => {
   const STORAGE_KEY = 'resume_data_v1';
 
   const DEFAULTS = {
-    summary: '',
+    summary: 'Cybersecurity student pursuing CompTIA Network+ and Security+ certifications with hands-on experience through a virtualized homelab, TryHackMe/HTB labs, and personal security tool development. Strong foundational knowledge in networking protocols, log analysis, SIEM platforms, and Python scripting. Targeting entry-level SOC analyst and security analyst roles in the government contracting sector, with a long-term goal of working in federal cybersecurity.',
     education: {
       degree: 'Bachelor of Business Administration — Computer Information Systems',
       school: '',
@@ -24,14 +24,38 @@ const ResumeEditor = (() => {
       coursework: '',
       activities: '',
     },
-    certifications: [],
     skills: [
+      {
+        category: 'Networking',
+        items: [
+          { name: 'TCP/IP & Subnetting', level: 'Strong', pct: 82 },
+          { name: 'Routing & Switching', level: 'Developing', pct: 60 },
+          { name: 'Wireshark / PCAP Analysis', level: 'Proficient', pct: 75 },
+          { name: 'pfSense / Firewall Rules', level: 'Developing', pct: 55 },
+        ],
+      },
       {
         category: 'Platforms & Tools',
         items: [
           { name: 'Vercel', level: 'Familiar', pct: 40 },
           { name: 'Supabase', level: 'Familiar', pct: 40 },
           { name: 'GitHub', level: 'Familiar', pct: 40 },
+        ],
+      },
+      {
+        category: 'Programming & Scripting',
+        items: [
+          { name: 'Python', level: 'Proficient', pct: 75 },
+          { name: 'Bash / Shell', level: 'Proficient', pct: 70 },
+          { name: 'SQL', level: 'Familiar', pct: 55 },
+          { name: 'PowerShell', level: 'Familiar', pct: 45 },
+        ],
+      },
+      {
+        category: 'Operating Systems',
+        items: [
+          { name: 'Linux (Kali, Ubuntu)', level: 'Proficient', pct: 78 },
+          { name: 'Windows / Windows Server', level: 'Proficient', pct: 72 },
         ],
       },
     ],
@@ -43,6 +67,7 @@ const ResumeEditor = (() => {
   let renderTimer = null;
   let saveTimer   = null;
   let activeTab   = 'summary';
+  let sharedCerts = [];
 
   /* ── Persistence ───────────────────────────────────────────── */
 
@@ -136,20 +161,20 @@ const ResumeEditor = (() => {
   }
 
   function buildCertifications() {
-    const rows = data.certifications.map(c => `
+    const rows = sharedCerts.map(c => `
       <div class="resume-entry">
         <div class="resume-entry-header">
           <div>
-            <div class="resume-entry-title">${e(c.title)}</div>
-            <div class="resume-entry-org">${e(c.org)}</div>
+            <div class="resume-entry-title">${e(c.name)}</div>
+            <div class="resume-entry-org">${e(c.issuer)}</div>
           </div>
-          <div class="resume-entry-date">${e(c.date)}</div>
+          <div class="resume-entry-date">${e(c.date_earned || c.date_planned || '')}</div>
         </div>
       </div>`).join('');
     return `
       <div class="resume-section reveal">
         <div class="resume-section-title">Certifications</div>
-        ${rows}
+        ${rows || '<p style="font-size:.875rem;color:var(--text-muted)">No certifications added yet — add some via the admin panel.</p>'}
       </div>`;
   }
 
@@ -231,7 +256,6 @@ const ResumeEditor = (() => {
       <div class="editor-tabs" role="tablist" aria-label="Resume sections">
         <button class="editor-tab active" data-section="summary"       role="tab">Summary</button>
         <button class="editor-tab"        data-section="education"     role="tab">Education</button>
-        <button class="editor-tab"        data-section="certifications" role="tab">Certs</button>
         <button class="editor-tab"        data-section="skills"        role="tab">Skills</button>
         <button class="editor-tab"        data-section="experience"    role="tab">Experience</button>
         <button class="editor-tab"        data-section="projects"      role="tab">Projects</button>
@@ -303,7 +327,6 @@ const ResumeEditor = (() => {
     ({
       summary:        buildSummaryForm,
       education:      buildEducationForm,
-      certifications: buildCertsForm,
       skills:         buildSkillsForm,
       experience:     buildExperienceForm,
       projects:       buildProjectsForm,
@@ -376,40 +399,6 @@ const ResumeEditor = (() => {
     body.appendChild(wrapField('Minor(s)',             makeInput(ed.minor,      v => { ed.minor      = v; })));
     body.appendChild(wrapField('Relevant Coursework',  makeInput(ed.coursework, v => { ed.coursework = v; })));
     body.appendChild(wrapField('Activities / Clubs',   makeInput(ed.activities, v => { ed.activities = v; })));
-  }
-
-  /* ── Certifications ────────────────────────────────────────── */
-  function buildCertsForm(body) {
-    data.certifications.forEach((cert, i) => {
-      const wrap = document.createElement('div');
-      wrap.className = 'editor-list-item';
-
-      const hdr = document.createElement('div');
-      hdr.className = 'editor-list-item-header';
-      const lbl = document.createElement('span');
-      lbl.className = 'editor-item-num';
-      lbl.textContent = `Cert ${i + 1}`;
-      hdr.appendChild(lbl);
-      hdr.appendChild(makeRemoveBtn('Remove', () => {
-        data.certifications.splice(i, 1);
-        onChange(); renderSection();
-      }));
-      wrap.appendChild(hdr);
-
-      wrap.appendChild(wrapField('Title',        makeInput(cert.title, v => { cert.title = v; })));
-      wrap.appendChild(wrapField('Organization', makeInput(cert.org,   v => { cert.org   = v; })));
-      wrap.appendChild(wrapField('Date',         makeInput(cert.date,  v => { cert.date  = v; })));
-      body.appendChild(wrap);
-    });
-
-    const addBtn = document.createElement('button');
-    addBtn.className = 'btn btn-sm btn-outline editor-add-btn';
-    addBtn.textContent = '+ Add Certification';
-    addBtn.addEventListener('click', () => {
-      data.certifications.push({ title: 'New Certification', org: '', date: '' });
-      onChange(); renderSection();
-    });
-    body.appendChild(addBtn);
   }
 
   /* ── Skills ────────────────────────────────────────────────── */
@@ -603,10 +592,18 @@ const ResumeEditor = (() => {
 
   /* ── Public ────────────────────────────────────────────────── */
 
+  function loadCertifications() {
+    if (typeof DataSource === 'undefined') return;
+    DataSource.fetchCertifications()
+      .then(certs => { sharedCerts = certs; scheduleRender(); })
+      .catch(err => console.error('ResumeEditor certifications:', err));
+  }
+
   function init() {
     load();
     renderResume();
     createPanel();
+    loadCertifications();
   }
 
   return { init };
