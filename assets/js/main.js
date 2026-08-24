@@ -468,12 +468,13 @@ const CertCards = (() => {
   };
 
   function render(cert) {
-    const skills = cert.skills.map(s => `<span class="cert-skill-tag">${escapeHtml(s)}</span>`).join('');
-    const date   = cert.date_earned
+    const skills  = cert.skills.map(s => `<span class="cert-skill-tag">${escapeHtml(s)}</span>`).join('');
+    const date    = cert.date_earned
       ? `<span>Earned: ${cert.date_earned}</span>`
       : cert.date_planned
         ? `<span>Target: ${cert.date_planned}</span>`
         : '';
+    const progress = cert.progress ?? 0;
 
     const el = document.createElement('article');
     el.className  = `cert-card ${cert.status} reveal`;
@@ -489,10 +490,10 @@ const CertCards = (() => {
         <div class="progress-wrap">
           <div class="progress-label">
             <span>Progress</span>
-            <span>${cert.progress}%</span>
+            <span>${progress}%</span>
           </div>
-          <div class="progress-track" role="progressbar" aria-valuenow="${cert.progress}" aria-valuemin="0" aria-valuemax="100">
-            <div class="progress-fill ${cert.status}" style="width: 0%;" data-target="${cert.progress}"></div>
+          <div class="progress-track" role="progressbar" aria-valuenow="${progress}" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-fill ${cert.status}" style="width: 0%;" data-target="${progress}"></div>
           </div>
         </div>
         <div class="cert-skills">${skills}</div>
